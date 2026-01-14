@@ -43,7 +43,7 @@ export default function Footer() {
               initial={{ opacity: 0, y: 20, x: -20}}
               animate={{ opacity: 1, y: 0, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="flex items-center md:gap-4 gap-16 text-gray-700">
+              className="flex items-center md:gap-4 sm:gap-14 gap-12 text-gray-700">
               <a href="#" aria-label="Facebook"><FaFacebookF className="hover:text-black text-2xl transition" /></a>
               <a href="#" aria-label="Instagram"><FaInstagram className="hover:text-black text-2xl transition" /></a>
               <a href="#" aria-label="Twitter"><FaXTwitter className="hover:text-black text-2xl transition" /></a>
