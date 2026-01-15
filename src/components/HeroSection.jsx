@@ -259,13 +259,26 @@ export default function Hero() {
                 layout
                 transition={{ duration: 0.8, ease: "easeInOut" }}
                 className={`relative rounded-md overflow-hidden shadow-xl mx-auto
-                  ${index === 0
-                    ? "sm:col-span-2 lg:row-span-2 h-[260px] sm:h-[360px] lg:h-[720px]"
-                    : index === 1
-                    ? "h-[220px] sm:h-[260px] lg:h-[340px]"
-                    : index === 3
-                    ? "lg:col-span-2 h-[220px] sm:h-[260px] lg:h-[340px]"
-                    : "h-[220px] sm:h-[260px] lg:h-[340px]" // fourth image
+
+                  ${
+                    index === 0
+                      ? `
+                        h-[260px]
+                        sm:col-span-2 sm:h-[360px]
+                        lg:row-span-2 lg:h-[720px]
+                      `
+                      : index === 3
+                      ? `
+                        h-[260px]
+                        sm:h-[360px]
+                        sm:col-span-2
+                        lg:col-span-2 lg:h-[340px]
+                      `
+                      : `
+                        h-[220px]
+                        sm:h-[260px]
+                        lg:h-[340px]
+                      `
                   }
                 `}
               >
@@ -277,8 +290,6 @@ export default function Hero() {
               </motion.div>
             ))}
           </motion.div>
-
-
         </div>
       </div>
     </section>

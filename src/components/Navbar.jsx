@@ -42,11 +42,11 @@ export default function Navbar() {
       className={`relative top-0 w-full z-50 transition-all duration-300 
       ${
         scrolled
-          ? "bg-none"
-          : "bg-none"
+          ? "bg-gray-100/40"
+          : "bg-gray-100/40"
       }`}
     >
-      <div className="bg-gray-100/40 max-w-7xl mx-auto flex items-center justify-between px-6 min-h-[80px]">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 min-h-[80px]">
         {/* Logo */}
         <div className="h-20 md:h-24 flex items-center">
           <img
@@ -54,6 +54,8 @@ export default function Navbar() {
             alt="Nnyocha"
             className={`
               h-40
+              md:h-40
+              lg:h-60
               w-auto
               transition-all duration-300
               scale-100
@@ -65,7 +67,7 @@ export default function Navbar() {
         <div className="hidden md:flex lg:flex items-center w-full justify-between text-sm font-medium text-gray-200">
 
           {/* CENTER LINKS */}
-          <div className="absolute text-gray-800 left-1/2 -translate-x-1/2 flex gap-10">
+          <div className="absolute text-gray-800 left-1/2 -translate-x-1/2 text-[18px] flex gap-10">
             <a href="#features" className="hover:text-[#e76f00] transition-colors">
               Features
             </a>
@@ -90,7 +92,8 @@ export default function Navbar() {
               onClick={() => setOpen(!open)}
               className="
                 px-5 py-2
-                rounded-full
+                rounded-2xl
+                lg:px-10
                 bg-[#e76f00]
                 text-white
                 font-medium
