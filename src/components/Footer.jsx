@@ -28,7 +28,7 @@ export default function Footer() {
             transition={{ duration: 0.6, ease: "easeOut" }}           
             className="h-16 sm:h-20 md:h-24 lg:h-28 flex items-center justify-start">
               <img
-                src="/icons/NNYOCHA -07.png"
+                src="/icons/NNYOCHA_07.png"
                 alt="Nnyocha"
                 className="
                   h-26

@@ -50,7 +50,7 @@ export default function Navbar() {
         {/* Logo */}
         <div className="h-20 md:h-24 flex items-center">
           <img
-            src="/icons/NNYOCHA -07.png"
+            src="/icons/NNYOCHA_07.png"
             alt="Nnyocha"
             className={`
               h-40
