@@ -48,30 +48,55 @@ export default function WaitlistForm() {
               className="space-y-8 flex-1 flex flex-col justify-between"
               onSubmit={handleSubmit}
             >
-              <div className="space-y-2">
+              <div className="space-y-4">
                 <input
                   name="firstName"
                   className="w-full p-3 rounded border border-gray-300 focus:ring-2 focus:ring-orange-400 focus:outline-none transition"
                   placeholder="First name"
                   required
                 />
+
                 <input
                   name="lastName"
                   className="w-full p-3 rounded border border-gray-300 focus:ring-2 focus:ring-orange-400 focus:outline-none transition"
                   placeholder="Last name"
                   required
                 />
+
                 <input
                   name="email"
                   type="email"
                   className="w-full p-3 rounded border border-gray-300 focus:ring-2 focus:ring-orange-400 focus:outline-none transition"
-                  placeholder="Email"
+                  placeholder="Email address"
                   required
                 />
+
+                {/* Telephone */}
+                <input
+                  name="phone"
+                  type="tel"
+                  className="w-full p-3 rounded border border-gray-300 focus:ring-2 focus:ring-orange-400 focus:outline-none transition"
+                  placeholder="Telephone (e.g. +234 801 234 5678)"
+                  required
+                />
+
+                {/* Persona */}
+                <select
+                  name="persona"
+                  className="w-full p-3 rounded border border-gray-300 bg-white focus:ring-2 focus:ring-orange-400 focus:outline-none transition"
+                  required
+                >
+                  <option value="">Select your persona</option>
+                  <option value="Researcher">Researcher</option>
+                  <option value="Investor">Funder</option>
+                  <option value="Mentor">Mentor</option>
+                </select>
+
                 <textarea
                   name="message"
                   className="w-full p-3 rounded border border-gray-300 focus:ring-2 focus:ring-orange-400 focus:outline-none transition"
                   placeholder="How can we support your research?"
+                  rows={4}
                   required
                 />
               </div>

@@ -26,30 +26,57 @@ export default function Footer() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}           
-            className="h-20 md:h-24 flex items-center justify-start">
-            <img
-                src="/icons/NNYOCHA_logo.png"
+            className="h-16 sm:h-20 md:h-24 lg:h-28 flex items-center justify-start">
+              <img
+                src="/icons/NNYOCHA -07.png"
                 alt="Nnyocha"
-                className={`
-                h-60
-                w-auto
-                transition-all duration-300
-                scale-100
-                `}
-            />
+                className="
+                  h-26
+                  sm:h-12
+                  md:h-64
+                  lg:h-26
+                  xl:h-18
+                  w-auto
+                  transition-transform duration-300
+                "
+              />
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20, x: -20}}
+              initial={{ opacity: 0, y: 20, x: -20 }}
               animate={{ opacity: 1, y: 0, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="flex items-center md:gap-4 sm:gap-14 gap-12 text-gray-700">
-              <a href="#" aria-label="Facebook"><FaFacebookF className="hover:text-black text-2xl transition" /></a>
-              <a href="#" aria-label="Instagram"><FaInstagram className="hover:text-black text-2xl transition" /></a>
-              <a href="#" aria-label="Twitter"><FaXTwitter className="hover:text-black text-2xl transition" /></a>
-              <a href="#" aria-label="LinkedIn"><FaLinkedinIn className="hover:text-black text-2xl transition" /></a>
-              <a href="#" aria-label="YouTube"><FaYoutube className="hover:text-black text-2xl transition" /></a>
+              className="
+                flex flex-wrap items-center justify-center
+                gap-4
+                sm:gap-6
+                md:gap-4
+                lg:gap-6
+                xl:gap-8
+                text-gray-600
+              "
+            >
+              <a href="#" aria-label="Facebook">
+                <FaFacebookF className="text-xl sm:text-2xl hover:text-black transition-colors" />
+              </a>
+
+              <a href="#" aria-label="Instagram">
+                <FaInstagram className="text-xl sm:text-2xl hover:text-black transition-colors" />
+              </a>
+
+              <a href="#" aria-label="Twitter">
+                <FaXTwitter className="text-xl sm:text-2xl hover:text-black transition-colors" />
+              </a>
+
+              <a href="#" aria-label="LinkedIn">
+                <FaLinkedinIn className="text-xl sm:text-2xl hover:text-black transition-colors" />
+              </a>
+
+              <a href="#" aria-label="YouTube">
+                <FaYoutube className="text-xl sm:text-2xl hover:text-black transition-colors" />
+              </a>
             </motion.div>
+
           </div>
 
           {/* Discover */}

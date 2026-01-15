@@ -39,17 +39,18 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`relative top-0 w-full z-50 transition-all duration-300 
+      ${
         scrolled
-          ? "bg-gray-50 text-gray-900 border-b border-gray-200"
-          : "bg-transparent text-gray-300 border-b border-gray-800"
+          ? "bg-black"
+          : "bg-black"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 min-h-[80px]">
         {/* Logo */}
         <div className="h-20 md:h-24 flex items-center">
           <img
-            src="/icons/NNYOCHA_logo.png"
+            src="/icons/NNYOCHA -07.png"
             alt="Nnyocha"
             className={`
               h-40
@@ -61,7 +62,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex gap-6 text-sm font-medium items-center">
+        <div className="hidden text-gray-200 md:flex gap-6 text-sm font-medium items-center">
           {/* Explore */}
           <button
             onClick={() => setOpen(!open)}
@@ -87,7 +88,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Hamburger */}
-        <div className="md:hidden flex items-center">
+        <div className="md:hidden text-gray-200 flex items-center">
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="flex flex-col gap-1 w-6 h-6 justify-center items-center"
