@@ -218,6 +218,7 @@ export default function Hero() {
                 </motion.div>
 
                 {/* BUTTON */}
+                <a href="#wait_list">
                 <motion.button
                   animate={{ x: [0, -6, 0] }}
                   transition={{
@@ -239,6 +240,7 @@ export default function Hero() {
                 >
                   Join waitlist
                 </motion.button>
+                </a>
               </div>
 
             </motion.div>
