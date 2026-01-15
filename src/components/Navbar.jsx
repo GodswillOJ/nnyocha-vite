@@ -39,14 +39,14 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`relative top-0 w-full z-50 transition-all duration-300 pb-10
+      className={`relative top-0 w-full z-50 transition-all duration-300 md:pb-0 lg:pb-10 pt-4
       ${
         scrolled
           ? "bg-gray-100/40"
           : "bg-gray-100/40"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 min-h-[80px]">
+      <div className="max-w-8xl mx-auto flex items-center justify-between px-6 min-h-[80px]">
         {/* Logo */}
         <div className="h-20 md:h-24 flex items-center">
           <img
@@ -54,8 +54,8 @@ export default function Navbar() {
             alt="Nnyocha"
             className={`
               h-40
-              md:h-40
-              lg:h-60
+              md:h-60
+              lg:h-80
               w-auto
               transition-all duration-300
               scale-100
@@ -102,7 +102,7 @@ export default function Navbar() {
                 shadow-sm
               "
             >
-              Explore
+              Join Waitlist
             </button>
           </div>
 
