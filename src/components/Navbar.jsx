@@ -8,6 +8,7 @@ import {
   FaChevronDown
 } from "react-icons/fa6";
 import { motion, AnimatePresence } from "framer-motion";
+import SocialIcon from "./SocialIcon.jsx";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -191,12 +192,12 @@ export default function Navbar() {
               ))}
 
               {/* SOCIALS */}
-              <div className="pt-6 border-t flex gap-4 text-gray-700">
-                <FaFacebookF />
-                <FaInstagram />
-                <FaXTwitter />
-                <FaLinkedinIn />
-                <FaYoutube />
+              <div className="pt-6 border-t flex gap-4">
+                <SocialIcon Icon={FaFacebookF} />
+                <SocialIcon Icon={FaInstagram} />
+                <SocialIcon Icon={FaXTwitter} />
+                <SocialIcon Icon={FaLinkedinIn} />
+                <SocialIcon Icon={FaYoutube} />
               </div>
             </div>
           </motion.div>
