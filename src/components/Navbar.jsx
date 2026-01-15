@@ -147,7 +147,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="md:hidden bg-white border-t shadow-md"
+            className="md:hidden bg-white"
           >
             <div className="px-6 py-6 space-y-6">
 
