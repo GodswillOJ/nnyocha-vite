@@ -72,7 +72,8 @@ export default function Hero() {
 
         {/* CTA */}
         <div className="mt-10 flex justify-center">
-          <motion.button
+        <a href="#wait_list">
+            <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
             className="
@@ -86,6 +87,7 @@ export default function Hero() {
           >
             Join Waitlist
           </motion.button>
+        </a>
         </div>
 
         {/* IMAGE GRID */}
