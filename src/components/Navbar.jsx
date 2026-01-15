@@ -192,7 +192,7 @@ export default function Navbar() {
               ))}
 
               {/* SOCIALS */}
-              <div className="pt-6 border-t flex gap-4">
+              <div className="pt-6 flex flex-col border-t flex gap-4">
                 <SocialIcon Icon={FaFacebookF} />
                 <SocialIcon Icon={FaInstagram} />
                 <SocialIcon Icon={FaXTwitter} />
