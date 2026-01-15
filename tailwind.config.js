@@ -4,17 +4,13 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        inter: [
-          'Inter',
-          'sans-serif',],
-        roboto: [          
-          'Roboto',
-          'Helvetica Neue',
-          'Arial',
-          'sans-serif',],
+        gotham: ['Gotham', 'Inter', 'sans-serif'],
+        openSans: ['"Open Sans"', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
+        roboto: ['Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
       },
     },
   },
   plugins: [],
 }
-
+z

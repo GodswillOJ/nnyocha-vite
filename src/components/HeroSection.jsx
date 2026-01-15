@@ -131,7 +131,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative sm:pt-36 pb-20 lg:pb-28 bg-black overflow-hidden">
+    <section className="relative sm:pt-36 pb-20 lg:pb-28 bg-gray-100/40 overflow-hidden">
       <div className="relative max-w-73l sm:px-6">
 
         {/* WRAPPER */}
@@ -155,18 +155,11 @@ export default function Hero() {
                 rounded-xl
                 z-20
                 mx-auto
+                bg-none
 
-                bg-gradient-to-br
-                from-[#0b0f1a]
-                via-[#0e1324]
-                to-[#0b0f1a]
+                lg:bg-black/60
 
-                border
-                border-white/10
-
-                shadow-[0_30px_80px_rgba(0,0,0,0.65)]
                 backdrop-blur-md
-
                 lg:absolute
                 lg:top-1/3
                 lg:right-1/3
@@ -177,15 +170,15 @@ export default function Hero() {
 
             >
               {/* Top-left H4 */}
-              <h4 className="text-xs text-center uppercase tracking-widest text-gray-400 mb-3">
+              <h4 className="text-xs text-center uppercase lg:text-white font-openSans tracking-widest text-gray-600 mb-3">
                 Our Network
               </h4>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl text-white leading-tight mb-4 text-center lg:text-center">
+              <h2 className="sm:text-black xs:text-black lg:text-white text-3xl font-bold  font-gotham sm:text-4xl lg:text-5xl leading-tight mb-4 text-center lg:text-center">
                 Where Research Meets Mentorship & Capital
               </h2>
 
-              <p className="text-gray-400 mb-6 sm:mb-8 text-sm sm:text-base text-center lg:text-center">
+              <p className="text-gray-800 mb-6 sm:mb-8 text-sm sm:text-base text-center font-gotham lg:text-white lg:text-center">
                 We connect researchers with mentors, institutions, and funders
                 to turn bold ideas into funded, real-world impact.
               </p>
@@ -229,8 +222,8 @@ export default function Hero() {
                   whileHover={{ scale: 1.05 }}
                   className="
                     px-14 py-2
-                    bg-[#ff6e00]
-                    text-black
+                    bg-[#E76f00]
+                    text-white
                     rounded-md
                     font-medium
                     hover:bg-[#fd9e57]
