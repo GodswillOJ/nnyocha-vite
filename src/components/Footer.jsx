@@ -5,169 +5,105 @@ import {
   FaInstagram,
   FaXTwitter,
   FaLinkedinIn,
-  FaYoutube,
-  FaArrowRight
+  FaYoutube
 } from "react-icons/fa6";
 import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <motion.footer 
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.4, ease: "easeOut" }}
-    className="bg-[#FFFBEA] text-[#4B5563]">
-      <div className="max-w-7xl mx-auto px-6 pr-1 py-20">
-        <div className="grid gap-12 md:grid-cols-4 py-10">
+    <motion.footer
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="bg-white text-gray-700"
+    >
+      <div className="max-w-6xl mx-auto px-6 pt-20 pb-10">
 
-          {/* Logo + Socials */}
-          <div className="space-y-8 md:items-center items-left justify-start md:justify-start flex flex-col">
-            <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}           
-            className="h-16 sm:h-20 md:h-24 lg:h-28 flex items-center justify-start">
-              <img
-                src="/icons/NNYOCHA_07.png"
-                alt="Nnyocha"
+      {/* LOGO */}
+      <div className="flex justify-center mb-10">
+        <div className="md:h-56 xs:h-24 sm:h-16 lg:h-72 flex items-center">
+          <img
+            src="/icons/NNYOCHA_07.png"
+            alt="Nnyocha"
+            className="h-full w-auto object-contain"
+          />
+        </div>
+      </div>
+
+        {/* NAV LINKS */}
+        <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm mb-10">
+          {["Home", "About", "Features", "FAQs", "Testimonials", "Blog"].map(
+            (item) => (
+              <a
+                key={item}
+                href="#"
+                className="hover:text-[#e76f00] transition-colors"
+              >
+                {item}
+              </a>
+            )
+          )}
+        </nav>
+
+        {/* SOCIAL ICONS */}
+        <div className="flex justify-center gap-4 mb-14">
+          {[FaInstagram, FaLinkedinIn, FaXTwitter, FaYoutube].map(
+            (Icon, i) => (
+              <a
+                key={i}
+                href="#"
                 className="
-                  h-26
-                  sm:h-12
-                  md:h-64
-                  lg:h-26
-                  xl:h-18
-                  w-auto
-                  transition-transform duration-300
+                  w-10 h-10
+                  rounded-full
+                  border border-gray-300
+                  flex items-center justify-center
+                  text-gray-600
+                  hover:text-[#e76f00] hover:border-[#e76f00]
+                  transition
                 "
-              />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20, x: -20 }}
-              animate={{ opacity: 1, y: 0, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="
-                flex flex-wrap items-center justify-center
-                gap-4
-                sm:gap-6
-                md:gap-4
-                lg:gap-6
-                xl:gap-8
-                text-gray-600
-              "
-            >
-              <a href="#" aria-label="Facebook">
-                <FaFacebookF className="text-xl sm:text-2xl hover:text-black transition-colors" />
+              >
+                <Icon size={16} />
               </a>
+            )
+          )}
+        </div>
 
-              <a href="#" aria-label="Instagram">
-                <FaInstagram className="text-xl sm:text-2xl hover:text-black transition-colors" />
-              </a>
+        {/* DIVIDER */}
+        <div className="border-t border-gray-200 my-16" />
 
-              <a href="#" aria-label="Twitter">
-                <FaXTwitter className="text-xl sm:text-2xl hover:text-black transition-colors" />
-              </a>
+        {/* PARTNER SECTION */}
+        <div className="text-center space-y-6 mb-16">
+          <p className="text-xs tracking-widest text-gray-400 uppercase">
+            Partner With Us
+          </p>
 
-              <a href="#" aria-label="LinkedIn">
-                <FaLinkedinIn className="text-xl sm:text-2xl hover:text-black transition-colors" />
-              </a>
-
-              <a href="#" aria-label="YouTube">
-                <FaYoutube className="text-xl sm:text-2xl hover:text-black transition-colors" />
-              </a>
-            </motion.div>
-
+          <div className="flex flex-col items-center gap-2 text-sm text-gray-600">
+            <p className="font-medium text-gray-800">
+              62, 2nd Floor, Adekomolafe Commercial House, Kudirat Abiola Way, <br /> Oregun, Ikeja, Lagos State.
+            </p>
+            <p>
+              Contact: (555) 123-4567 
+            </p>
+            {/* <p className="text-xs text-gray-400">
+              DRE Lic# 01987375
+            </p> */}
           </div>
+        </div>
 
-          {/* Discover */}
-          <div className="md:pl-20 pl-0">
-            <h4 className="mb-4 text-sm font-semibold text-gray-800 tracking-wide">
-              Discover
-            </h4>
-            <motion.ul
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="space-y-3 text-sm">
-              {[
-                ["About", "#about"],
-                ["Team", "#team"],
-                ["Careers", "#careers"],
-                ["Blog", "#blog"],
-                ["Contact", "#contact"]
-              ].map(([label, path]) => (
-                <li key={label}>
-                  <a
-                    href={path}
-                    className="group inline-flex items-center gap-2 hover:text-black transition"
-                  >
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </motion.ul>
+        {/* BOTTOM BAR */}
+        <div className="border-t border-gray-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+          <p className="text-gray-500">
+            © Copyright {new Date().getFullYear()} | Nnyocha | All rights reserved.
+          </p>
+
+          <div className="flex gap-6">
+            <Link to="#privacy" className="hover:text-black transition">
+              Privacy Policy
+            </Link>
+            <Link to="#terms" className="hover:text-black transition">
+              Terms & Conditions
+            </Link>
           </div>
-
-          {/* Support */}
-          <div className="md:pl-20 pl-0">
-            <h4 className="mb-4 text-sm font-semibold text-gray-800 tracking-wide">
-              Support
-            </h4>
-            <motion.ul 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="space-y-3 text-sm">
-              <li>
-                <a
-                  href="#help"
-                  className="group inline-flex items-center gap-2 hover:text-black transition"
-                >
-                  Help
-                </a>
-              </li>
-
-              {/* ✅ ONLY CHANGE: FAQ uses anchor */}
-              <li>
-                <a
-                  href="#faq"
-                  className="group inline-flex items-center gap-2 hover:text-black transition"
-                >
-                  FAQ
-                </a>
-              </li>
-            </motion.ul>
-          </div>
-
-          {/* Legal */}
-          <div className="md:pl-20 pl-0">
-            <h4 className="mb-4 text-sm font-semibold text-gray-800 tracking-wide">
-              Legal
-            </h4>
-            <motion.ul
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-              className="space-y-3 text-sm">
-              {[
-                ["Privacy", "#privacy"],
-                ["Terms", "#terms"],
-                ["Cookies", "#cookies"],
-                ["Access", "#access"],
-                ["Policy", "#policy"]
-              ].map(([label, path]) => (
-                <li key={label}>
-                  <Link
-                    to={path}
-                    className="group inline-flex items-center gap-2 hover:text-black transition"
-                  >
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </motion.ul>
-          </div>
-
         </div>
       </div>
     </motion.footer>

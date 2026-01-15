@@ -28,7 +28,7 @@ export default function Info() {
   const current = tabs.find((tab) => tab.id === activeTab);
 
   return (
-    <section className="bg-[#f7f6df] py-20">
+    <section className="bg-gray-100/80 py-20">
       <div className="max-w-6xl mx-auto px-4">
 
         {/* Tabs */}

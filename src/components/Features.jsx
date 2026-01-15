@@ -33,7 +33,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="about" className="py-24 bg-[#faf9e8] overflow-hidden">
+    <section id="about" className="py-24 bg-gray-100/80 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 py-10">
         <h2 className="text-3xl md:text-4xl font-medium text-center mb-14">
           Research thrives when we connect

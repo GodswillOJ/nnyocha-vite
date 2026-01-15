@@ -1,42 +1,80 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
-const images = [
-  "https://picsum.photos/500/500?random=1",
-  "https://picsum.photos/500/500?random=2",
-  "https://picsum.photos/500/500?random=3",
-  "https://picsum.photos/500/500?random=4",
+const initialImages = [
+  { id: 1, src: "https://picsum.photos/500/500?random=1" },
+  { id: 2, src: "https://picsum.photos/500/500?random=2" },
+  { id: 3, src: "https://picsum.photos/500/500?random=3" },
+  { id: 4, src: "https://picsum.photos/500/500?random=4" },
 ];
 
 export default function Hero() {
-  return (
-    <section className="relative pt-40 pb-32 bg-gray-100 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 text-center">
+  const [images, setImages] = useState(initialImages);
 
-        {/* HEADLINE */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-gotham font-bold text-gray-900 leading-tight">
-          Where Research Meets{" "}
-          <span className="italic font-normal">Mentorship & Capital</span>
-        </h1>
+  // 🔁 Reorder images every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setImages((prev) => {
+        const shuffled = [...prev];
+        shuffled.push(shuffled.shift()); // rotate positions
+        return shuffled;
+      });
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="relative pt-32 pb-32 bg-gray-100 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 text-center">
+
+      {/* HEADLINE */}
+      <motion.h1
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="
+          text-4xl sm:text-5xl lg:text-6xl
+          font-gotham font-bold
+          text-gray-900
+          leading-tight
+          text-center
+        "
+      >
+        <span className="block">
+          Where Research Meets
+        </span>
+
+        <span className="block italic font-normal md:mt-2">
+          Mentorship & Capital
+        </span>
+      </motion.h1>
 
         {/* SUBTEXT */}
-        <p className="
-          mt-6
-          text-gray-600
-          text-[15px]
-          sm:text-[17px]
-          leading-[1.7]
-          max-w-[52ch]
-          mx-auto
-          font-openSans
-        ">
+        <motion.p
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.6 }}
+          className="
+            mt-6
+            text-gray-600
+            text-[15px]
+            sm:text-[17px]
+            leading-[1.7]
+            max-w-[52ch]
+            mx-auto
+            font-openSans
+          "
+        >
           We connect researchers with mentors, institutions, and funders to turn
           bold ideas into funded, real-world impact.
-        </p>
+        </motion.p>
 
         {/* CTA */}
         <div className="mt-10 flex justify-center">
           <motion.button
             whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
             className="
               px-8 py-3
               rounded-full
@@ -46,65 +84,70 @@ export default function Hero() {
               shadow-lg
             "
           >
-            Explore
+            Join Waitlist
           </motion.button>
         </div>
 
-        {/* IMAGE DECK */}
-        {/* IMAGE STRIP */}
-        <div className="mt-20">
-          <div
-            className="
-              flex
-              gap-6
-              justify-center
-              items-center
+        {/* IMAGE GRID */}
+        <motion.div
+          layout
+          className="
+            mt-20
+            grid
+            grid-cols-1
+            sm:grid-cols-2
+            lg:grid-cols-4
+            gap-8 sm:gap-10 lg:gap-12
+            relative
+            z-10
+          "
+        >
+          {images.map((img, index) => (
+            <motion.div
+              key={img.id}
+              layout
+              transition={{
+                layout: {
+                  duration: 0.9,
+                  ease: "easeInOut",
+                },
+              }}
+              className={`relative overflow-hidden rounded-xl shadow-xl mx-auto w-full
 
-              overflow-x-auto
-              px-4
-              sm:px-0
-
-              scrollbar-hide
-            "
-          >
-            {images.map((src, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.12, duration: 0.5 }}
-                className="flex-shrink-0"
-                style={{
-                  transform: `rotate(${[-10, -3, 4, 10][i]}deg)`,
-                }}
-              >
-                <div
-                  className="
-                    w-[140px]
-                    h-[140px]
-
-                    sm:w-[170px]
-                    sm:h-[170px]
-
-                    lg:w-[220px]
-                    lg:h-[220px]
-
-                    rounded-2xl
-                    overflow-hidden
-                    shadow-xl
-                    bg-white
-                  "
-                >
-                  <img
-                    src={src}
-                    alt=""
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+                ${
+                  index === 0
+                    ? `
+                      h-[260px]
+                      sm:col-span-2 sm:h-[360px]
+                      lg:row-span-2 lg:h-[720px]
+                    `
+                    : index === 3
+                    ? `
+                      h-[260px]
+                      sm:h-[360px]
+                      sm:col-span-2
+                      lg:col-span-2 lg:h-[340px]
+                    `
+                    : `
+                      h-[220px]
+                      sm:h-[260px]
+                      lg:h-[340px]
+                    `
+                }
+              `}
+            >
+              <img
+                src={img.src}
+                alt="Hero visual"
+                className="
+                  w-full h-full object-cover
+                  transition-transform duration-700
+                  hover:scale-105
+                "
+              />
+            </motion.div>
+          ))}
+        </motion.div>
 
       </div>
     </section>

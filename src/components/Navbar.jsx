@@ -1,21 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-
 import {
   FaFacebookF,
   FaInstagram,
   FaXTwitter,
   FaLinkedinIn,
   FaYoutube,
-  FaArrowRight
+  FaChevronDown
 } from "react-icons/fa6";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false); // new mobile menu state
-  const dropdownRef = useRef(null);
+
+  // ✅ SEPARATED MOBILE STATES
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [mobileExploreOpen, setMobileExploreOpen] = useState(false);
+
   const [activeMobileSection, setActiveMobileSection] = useState(null);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -23,9 +26,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close dropdown on outside click
+  // Close desktop dropdown on outside click
   useEffect(() => {
-    if (mobileOpen) return; // 👈 prevent mobile interference
+    if (mobileNavOpen) return;
 
     const handler = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -35,323 +38,170 @@ export default function Navbar() {
 
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
-  }, [mobileOpen]);
+  }, [mobileNavOpen]);
 
   return (
     <nav
-      className={`relative top-0 w-full z-50 transition-all duration-300 md:pb-0 lg:pb-10 pt-4
-      ${
-        scrolled
-          ? "bg-gray-100/40"
-          : "bg-gray-100/40"
-      }`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 pt-4
+      ${scrolled ? "bg-gray-100/40" : "bg-gray-100/40"}`}
     >
       <div className="max-w-8xl mx-auto flex items-center justify-between px-6 min-h-[80px]">
-        {/* Logo */}
+
+        {/* LOGO */}
         <div className="h-20 md:h-24 flex items-center">
           <img
             src="/icons/NNYOCHA_07.png"
             alt="Nnyocha"
-            className={`
-              h-40
-              md:h-60
-              lg:h-80
-              w-auto
-              transition-all duration-300
-              scale-100
-            `}
+            className="h-40 md:h-60 lg:h-80 w-auto transition-all"
           />
         </div>
 
-        {/* DESKTOP NAV (LARGE SCREENS ONLY) */}
-        <div className="hidden md:flex lg:flex items-center w-full justify-between text-sm font-medium text-gray-200">
+        {/* DESKTOP NAV */}
+        <div className="hidden md:flex w-full justify-between">
 
-          {/* CENTER LINKS */}
-          <div className="absolute text-gray-800 left-1/2 -translate-x-1/2 text-[18px] flex gap-10">
-            <a href="#features" className="hover:text-[#e76f00] transition-colors">
-              Features
-            </a>
-            <a href="#about" className="hover:text-[#e76f00] transition-colors">
-              About
-            </a>
-            <a href="#faqs" className="hover:text-[#e76f00] transition-colors">
-              FAQs
-            </a>
-            <a
-              href="#"
-              className="hover:text-[#e76f00] transition-colors"
-            >
-              Blog
-            </a>
-          </div>
+          <div className="absolute left-1/2 -translate-x-1/2 flex gap-10 text-[18px] text-gray-800">
+            <a href="#about" className="hover:text-[#e76f00]">Home</a>
 
-          {/* RIGHT ACTIONS */}
-          <div className="ml-auto flex items-center gap-6">
-            {/* EXPLORE BUTTON */}
             <button
               onClick={() => setOpen(!open)}
-              className="
-                px-5 py-2
-                rounded-2xl
-                lg:px-10
-                bg-[#e76f00]
-                text-white
-                font-medium
-                hover:bg-[#ff8a1d]
-                transition
-                shadow-sm
-              "
+              className="flex items-center gap-1 hover:text-[#e76f00]"
             >
-              Join Waitlist
+              Explore
+              <motion.span
+                animate={{ rotate: open ? 180 : 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                <FaChevronDown size={12} />
+              </motion.span>
             </button>
+
+            <a href="#faqs" className="hover:text-[#e76f00]">FAQs</a>
+            <a href="#" className="hover:text-[#e76f00]">Blog</a>
           </div>
 
+          <div className="ml-auto">
+            <a
+              href="#wait_list"
+              className="px-5 py-2.5 rounded-full bg-[#ff8a1d] text-white hover:bg-gray-700"
+            >
+              Contact Us
+            </a>
+          </div>
         </div>
 
-        {/* Mobile Explore Button */}
-        <div className="md:hidden flex items-center">
-          <button
-            onClick={() => {
-              setMobileOpen(!mobileOpen);
-              setActiveMobileSection(null);
-            }}
-            className="
-              px-4 py-2
-              rounded-full
-              bg-[#e76f00]
-              text-white
-              text-sm
-              font-medium
-              hover:bg-[#ff8a1d]
-              transition
-              shadow-sm
-            "
-          >
-            Explore
-          </button>
-        </div>
-
+        {/* HAMBURGER */}
+        <button
+          onClick={() => {
+            setMobileNavOpen(prev => !prev);
+            setMobileExploreOpen(false);
+            setActiveMobileSection(null);
+          }}
+          className="md:hidden p-2 text-gray-800"
+        >
+          <div className="space-y-1.5">
+            <span className="block w-6 h-[2px] bg-current"></span>
+            <span className="block w-6 h-[2px] bg-current"></span>
+            <span className="block w-6 h-[2px] bg-current"></span>
+          </div>
+        </button>
       </div>
 
-      {/* MOBILE / SMALL-SCREEN SECONDARY NAV */}
-      <div className="md:hidden w-full bg-white bg-gray-100/20">
-        <motion.div
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35, ease: "easeOut" }}
-          className="
-            max-w-7xl mx-auto
-            px-4 sm:px-6
-            py-3
-            flex items-center justify-center
-          "
-        >
-          <div
-            className="
-              flex flex-wrap items-center justify-center
-              gap-x-6 gap-y-3
-              text-[14px] sm:text-[13px]
-              font-medium
-              font-gotham
-              tracking-wide
-              text-gray-700
-            "
+      {/* MOBILE SECONDARY NAV */}
+      <AnimatePresence>
+        {mobileNavOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            className="md:hidden bg-white/90 backdrop-blur-md shadow-sm"
           >
-            {["Features", "About", "FAQs", "Blog"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="
-                  relative
-                  whitespace-nowrap
-                  transition-colors
-                  hover:text-[#e76f00]
+            <div className="py-3 flex justify-center gap-6 text-gray-700">
 
-                  after:absolute after:-bottom-1 after:left-0
-                  after:h-[2px] after:w-0 after:bg-[#e76f00]
-                  after:transition-all after:duration-300
-                  hover:after:w-full
-                "
+              <button
+                onClick={() => setMobileExploreOpen(prev => !prev)}
+                className="hover:text-[#e76f00]"
               >
-                {item}
-              </a>
-            ))}
-          </div>
-        </motion.div>
-      </div>
+                Explore
+              </button>
 
-
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="md:hidden bg-white shadow-md border-t border-gray-200">
-          <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="flex flex-col px-6 py-4 gap-4 text-gray-900"
-          >
-            
-            {/* Explore toggle */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="flex flex-col px-6 py-4 gap-6 text-gray-900"
-        >
-          {/* Researchers */}
-          <div>
-            <button
-              onClick={() =>
-                setActiveMobileSection(
-                  activeMobileSection === "researchers" ? null : "researchers"
-                )
-              }
-              className="w-full text-left text-base font-medium text-gray-800"
-            >
-              Researchers
-            </button>
-
-            {activeMobileSection === "researchers" && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="mt-3 pl-4 flex flex-col gap-2"
-              >
-                {["Get Funding", "Collaborate", "Showcase"].map(item => (
-                  <a
-                    key={item}
-                    href="#"
-                    className="text-sm font-semibold text-gray-700 hover:text-[#ff6e00]"
-                  >
-                    {item}
-                  </a>
-                ))}
-              </motion.div>
-            )}
-          </div>
-
-          {/* Funders */}
-          <div>
-            <button
-              onClick={() =>
-                setActiveMobileSection(
-                  activeMobileSection === "funders" ? null : "funders"
-                )
-              }
-              className="w-full text-left text-base font-medium text-gray-800"
-            >
-              Funders
-            </button>
-
-            {activeMobileSection === "funders" && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="mt-3 pl-4 flex flex-col gap-2"
-              >
-                {["Find Talent", "Support Growth", "Build Community"].map(item => (
-                  <a
-                    key={item}
-                    href="#"
-                    className="text-sm font-semibold text-gray-700 hover:text-[#ff6e00]"
-                  >
-                    {item}
-                  </a>
-                ))}
-              </motion.div>
-            )}
-          </div>
-
-          {/* Mentors */}
-          <div>
-            <button
-              onClick={() =>
-                setActiveMobileSection(
-                  activeMobileSection === "mentors" ? null : "mentors"
-                )
-              }
-              className="w-full text-left text-base font-medium text-gray-800"
-            >
-              Mentors
-            </button>
-
-            {activeMobileSection === "mentors" && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="mt-3 pl-4 flex flex-col gap-2"
-              >
-                {["Share Insights", "Mentor", "Track Progress"].map(item => (
-                  <a
-                    key={item}
-                    href="#"
-                    className="text-sm font-semibold text-gray-700 hover:text-[#ff6e00]"
-                  >
-                    {item}
-                  </a>
-                ))}
-              </motion.div>
-            )}
-          </div>
-        </motion.div>
-
-
+              {["About", "FAQs", "Blog"].map(item => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  onClick={() => setMobileNavOpen(false)}
+                  className="hover:text-[#e76f00]"
+                >
+                  {item}
+                </a>
+              ))}
+            </div>
           </motion.div>
-          {/* Socials */}
-          <div className="socials pt-6 mt-6 border-t border-gray-200 flex flex-col gap-4">
-            {/* Social Icons */}
-            <motion.div 
-            initial={{ opacity: 0, y: 20, x: -10 }}
-            animate={{ opacity: 1, y: 0 , x: 0 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="flex items-center gap-4 text-gray-700 px-6  mb-12">
-              <a
-                href="#"
-                aria-label="Facebook"
-                className="hover:text-[#ff6e00] transition-colors"
-              >
-                <FaFacebookF size={16} />
-              </a>
+        )}
+      </AnimatePresence>
 
-              <a
-                href="#"
-                aria-label="Instagram"
-                className="hover:text-[#ff6e00] transition-colors"
-              >
-                <FaInstagram size={16} />
-              </a>
+      {/* MOBILE EXPLORE SUB-NAV */}
+      <AnimatePresence>
+        {mobileExploreOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className="md:hidden bg-white border-t shadow-md"
+          >
+            <div className="px-6 py-6 space-y-6">
 
-              <a
-                href="#"
-                aria-label="Twitter"
-                className="hover:text-[#ff6e00] transition-colors"
-              >
-                <FaXTwitter size={16} />
-              </a>
+              {[
+                { key: "researchers", label: "Researchers", items: ["Get Funding", "Collaborate", "Showcase"] },
+                { key: "funders", label: "Funders", items: ["Find Talent", "Support Growth", "Build Community"] },
+                { key: "mentors", label: "Mentors", items: ["Share Insights", "Mentor", "Track Progress"] }
+              ].map(section => (
+                <div key={section.key}>
+                  <button
+                    onClick={() =>
+                      setActiveMobileSection(
+                        activeMobileSection === section.key ? null : section.key
+                      )
+                    }
+                    className="w-full text-left font-medium"
+                  >
+                    {section.label}
+                  </button>
 
-              <a
-                href="#"
-                aria-label="LinkedIn"
-                className="hover:text-[#ff6e00] transition-colors"
-              >
-                <FaLinkedinIn size={16} />
-              </a>
+                  <AnimatePresence>
+                    {activeMobileSection === section.key && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        className="pl-4 mt-3 space-y-2"
+                      >
+                        {section.items.map(item => (
+                          <a
+                            key={item}
+                            href="#"
+                            className="block text-sm text-gray-700 hover:text-[#ff6e00]"
+                          >
+                            {item}
+                          </a>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
 
-              <a
-                href="#"
-                aria-label="YouTube"
-                className="hover:text-[#ff6e00] transition-colors"
-              >
-                <FaYoutube size={16} />
-              </a>
-            </motion.div>
-          </div>
-
-        </div>
-      )}
+              {/* SOCIALS */}
+              <div className="pt-6 border-t flex gap-4 text-gray-700">
+                <FaFacebookF />
+                <FaInstagram />
+                <FaXTwitter />
+                <FaLinkedinIn />
+                <FaYoutube />
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Desktop Dropdown */}
       {open && (
