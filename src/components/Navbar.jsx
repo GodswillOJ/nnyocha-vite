@@ -39,7 +39,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`relative top-0 w-full z-50 transition-all duration-300 
+      className={`relative top-0 w-full z-50 transition-all duration-300 pb-10
       ${
         scrolled
           ? "bg-gray-100/40"
@@ -150,7 +150,7 @@ export default function Navbar() {
             className="
               flex flex-wrap items-center justify-center
               gap-x-6 gap-y-3
-              text-[12px] sm:text-[13px]
+              text-[14px] sm:text-[13px]
               font-medium
               font-gotham
               tracking-wide
