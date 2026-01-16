@@ -6,19 +6,28 @@ const tabs = [
     id: "peers",
     label: "Connect with peers",
     title: "Grow your research circle",
-    image: "https://picsum.photos/800/600",
+    description:
+      "Build meaningful relationships with researchers who share your goals.",
+    image: "https://picsum.photos/900/700?1",
+    bg: "bg-[#FBF3E8]",
   },
   {
     id: "collaborate",
     label: "Collaborate easily",
     title: "Work better together",
-    image: "https://picsum.photos/800/600",
+    description:
+      "Work together seamlessly across institutions and disciplines.",
+    image: "https://picsum.photos/900/700?2",
+    bg: "bg-[#EEF3FA]",
   },
   {
     id: "funded",
     label: "Get funded",
     title: "Turn ideas into impact",
-    image: "https://picsum.photos/800/600",
+    description:
+      "Access opportunities that turn strong ideas into funded research.",
+    image: "https://picsum.photos/900/700?3",
+    bg: "bg-[#F6F8F4]",
   },
 ];
 
@@ -41,8 +50,8 @@ export default function Info() {
                 text-xs sm:text-sm md:text-base
                 ${
                   activeTab === tab.id
-                    ? "text-black border-b-2 border-black"
-                    : "text-gray-500 hover:text-black"
+                    ? "text-[#56371a] font-openSans font-semibold border-b-2 border-[#8cc63f]"
+                    : "text-gray-500 font-openSans hover:text-black"
                 }`}
             >
               {tab.label}
@@ -54,30 +63,81 @@ export default function Info() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            initial={{ opacity: 0, y:10 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="flex flex-col items-center gap-12"
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="w-full"
           >
-            <h2 className="text-4xl font-medium text-center">
-              {current.title}
-            </h2>
+            {/* CONTAINER */}
+            <div
+              className={`
+                w-full
+                rounded-3xl
+                ${current.bg}
+                px-6
+                sm:px-10
+                lg:px-16
+                py-12
+                lg:py-20
+              `}
+            >
+              {/* GRID LAYOUT */}
+              <div className="
+                grid
+                grid-cols-1
+                lg:grid-cols-2
+                gap-12
+                lg:gap-20
+                items-center
+              ">
+                {/* TEXT */}
+                <div className="max-w-xl">
+                  <h3 className="
+                    font-openSans
+                    text-3xl
+                    sm:text-4xl
+                    lg:text-5xl
+                    font-semibold
+                    text-gray-900
+                    mb-6
+                  ">
+                    {current.title}
+                  </h3>
 
-            {/* Image with continuous zoom */}
-            <div className="w-full rounded-2xl overflow-hidden shadow-lg relative h-[28rem]">
-              <motion.img
-                src={current.image}
-                alt={current.title}
-                className="w-full h-full object-cover"
-                animate={{ scale: [1, 1.05, 1] }} // zoom in and out
-                transition={{
-                  duration: 8,         // slow, smooth zoom
-                  repeat: Infinity,    // loop forever
-                  repeatType: "loop",
-                  ease: "easeInOut"
-                }}
-              />
+                  <p className="
+                    text-base
+                    sm:text-lg
+                    leading-relaxed
+                    text-gray-600
+                  ">
+                    {current.description}
+                  </p>
+                </div>
+
+                {/* IMAGE */}
+                <div className="
+                  w-full
+                  h-[18rem]
+                  sm:h-[22rem]
+                  lg:h-[26rem]
+                  rounded-2xl
+                  overflow-hidden
+                  shadow-xl
+                ">
+                  <motion.img
+                    src={current.image}
+                    alt={current.title}
+                    className="w-full h-full object-cover"
+                    animate={{ scale: [1, 1.06, 1] }}
+                    transition={{
+                      duration: 9,
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                    }}
+                  />
+                </div>
+              </div>
             </div>
           </motion.div>
         </AnimatePresence>

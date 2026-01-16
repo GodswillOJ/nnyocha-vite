@@ -64,7 +64,7 @@ export default function Navbar() {
         {/* DESKTOP NAV */}
         <div className="hidden md:flex w-full justify-between">
 
-          <div className="absolute left-1/2 -translate-x-1/2 flex gap-10 text-[18px] text-gray-800">
+          <div className="absolute left-1/2 -translate-x-1/2 flex gap-10 font-semibold text-[18px] text-gray-800">
             <a href="#about" className="hover:text-[#e76f00]">Home</a>
 
             <button
@@ -87,9 +87,43 @@ export default function Navbar() {
           <div className="ml-auto">
             <a
               href="#wait_list"
-              className="px-5 py-2.5 rounded-full bg-[#ff8a1d] text-white hover:bg-gray-700"
+              className="
+                inline-flex
+                font-medium
+                items-center
+                gap-2
+                px-5
+                py-2.5
+                rounded-full
+                bg-[#e76f00]
+                active:bg-[#ff6e00]
+                text-white
+                hover:bg-[#e76f00]/70
+                transition
+              "
             >
-              Contact Us
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5 12h14"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M13 6l6 6-6 6"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span>Contact Us</span>
             </a>
           </div>
         </div>

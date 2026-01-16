@@ -1,6 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import { motion } from "framer-motion";
 import "swiper/css";
 
@@ -8,74 +8,88 @@ const features = [
   {
     title: "Connect with fellow researchers",
     text: "Meet passionate minds eager to collaborate.",
-    // image: "/images/gaming.jpg",
-    image: "https://picsum.photos/1300/600",
+    images: [
+      "https://picsum.photos/400/700?1",
+      "https://picsum.photos/400/700?2",
+      "https://picsum.photos/400/700?3",
+    ],
   },
   {
     title: "Learn from experienced mentors",
     text: "Tap into the wisdom of those who’ve walked your path.",
-    // image: "/images/saas.jpg",
-    image: "https://picsum.photos/900/600",
-  },
-  {
-    title: "Unlock research funding",
-    text: "Explore funding options designed for your goals.",
-    // image: "/images/interface.jpg",
-    image: "https://picsum.photos/1900/600",
-  },
-  {
-    title: "Celebrate your achievements",
-    text: "Share progress and inspire others.",
-    // image: "/images/science.jpg",
-    image: "https://picsum.photos/1800/600",
+    images: [
+      "https://picsum.photos/400/700?4",
+      "https://picsum.photos/400/700?5",
+      "https://picsum.photos/400/700?6",
+    ],
   },
 ];
 
 export default function Features() {
   return (
-    <section id="about" className="py-24 bg-gray-100/80 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 py-10">
-        <h2 className="text-3xl md:text-4xl font-medium text-center mb-14">
+    <section className="py-28 bg-gray-100/80 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-4xl font-medium text-center mb-20">
           Research thrives when we connect
         </h2>
 
         <Swiper
-          modules={[Autoplay, FreeMode]}
+          modules={[Autoplay]}
           loop
-          grabCursor={false}
-        //   allowTouchMove={false} // Disable manual swiping
-          freeMode={{
-            enabled: true,
-            momentum: false,
-          }}
-          autoplay={{
-            delay: 0,
-            disableOnInteraction: false,
-            reverseDirection: false, // LEFT → RIGHT
-          }}
-          speed={6000}
-          spaceBetween={24}
-          breakpoints={{
-            320: { slidesPerView: 1.2 },
-            768: { slidesPerView: 2.2 },
-            1024: { slidesPerView: 3.2 },
-          }}
-          className="w-full cursor-grab active:cursor-grabbing"
+          autoplay={{ delay: 6000, disableOnInteraction: false }}
+          speed={1000}
         >
           {features.map((f, i) => (
             <SwiperSlide key={i}>
-              <div className="rounded-2xl p-5 h-full">
-                <h3 className="font-semibold mb-2">{f.title}</h3>
-                <p className="text-sm text-gray-600 mb-4">{f.text}</p>
+              <div className="
+                grid
+                grid-cols-1
+                lg:grid-cols-2
+                gap-14
+                items-center
+              ">
+                {/* TEXT */}
+                <div className="max-w-xl">
+                  <h3 className="text-4xl font-semibold mb-6">
+                    {f.title}
+                  </h3>
+                  <p className="text-lg text-gray-600">
+                    {f.text}
+                  </p>
+                </div>
 
-                <div className="rounded-xl overflow-hidden">
-                  <motion.img
-                    src={f.image}
-                    alt={f.title}
-                    className="w-full h-48 object-cover"
-                    whileHover={{ scale: 1.1 }}   // zoom in 10% on hover
-                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                  />
+                {/* IMAGE STACK */}
+                <div className="relative h-[26rem] overflow-hidden">
+                  <motion.div
+                    className="absolute inset-0 flex gap-6"
+                    animate={{ x: ["0%", "-40%"] }}
+                    transition={{
+                      duration: 14,
+                      ease: "linear",
+                      repeat: Infinity,
+                    }}
+                  >
+                    {[...f.images, ...f.images].map((img, idx) => (
+                      <div
+                        key={idx}
+                        className="
+                          w-48
+                          sm:w-56
+                          lg:w-60
+                          shrink-0
+                          rounded-2xl
+                          overflow-hidden
+                          shadow-2xl
+                        "
+                      >
+                        <img
+                          src={img}
+                          alt=""
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ))}
+                  </motion.div>
                 </div>
               </div>
             </SwiperSlide>
