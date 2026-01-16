@@ -26,29 +26,29 @@ export default function Hero() {
 
   return (
     <section className="relative pt-32 pb-32 bg-gray-100 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 text-center">
+      <div className="max-w-7xl pt-10 lg:pt-16 mx-auto px-6 text-center">
 
-      {/* HEADLINE */}
-      <motion.h1
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="
-          text-4xl sm:text-5xl lg:text-6xl
-          font-gotham font-bold
-          text-gray-900
-          leading-tight
-          text-center
-        "
-      >
-        <span className="block">
-          Where Research Meets
-        </span>
+        {/* HEADLINE */}
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="
+            text-4xl sm:text-5xl lg:text-6xl
+            font-gotham font-bold
+            text-gray-900
+            leading-tight
+            text-center
+          "
+        >
+          <span className="block">
+            Where Research Meets
+          </span>
 
-        <span className="block italic font-normal md:mt-2">
-          Mentorship & Capital
-        </span>
-      </motion.h1>
+          <span className="block italic font-normal md:mt-2">
+            Mentorship & Capital
+          </span>
+        </motion.h1>
 
         {/* SUBTEXT */}
         <motion.p
@@ -72,22 +72,26 @@ export default function Hero() {
 
         {/* CTA */}
         <div className="mt-10 flex justify-center">
-        <a href="#wait_list">
-            <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-            className="
-              px-8 py-3
-              rounded-full
-              bg-[#ff8a1d]
-              text-white
-              font-medium
-              shadow-lg
-            "
-          >
-            Join Waitlist
-          </motion.button>
-        </a>
+          <a href="#wait_list">
+              <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="
+                px-12
+                md:px-16
+                py-3
+                md:rounded-lg
+                sm:rounded-md
+                rounded-md
+                bg-[#ff8a1d]
+                text-white
+                font-medium
+                shadow-lg
+              "
+            >
+              Join Waitlist
+            </motion.button>
+          </a>
         </div>
 
         {/* IMAGE GRID */}

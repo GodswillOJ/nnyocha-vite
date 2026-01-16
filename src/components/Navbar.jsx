@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
+  FaCompass,
   FaFacebookF,
   FaInstagram,
   FaXTwitter,
   FaLinkedinIn,
   FaYoutube,
-  FaChevronDown
+  FaChevronDown,
+  FaCircleInfo,
+  FaCircleQuestion,
+  FaBlog
 } from "react-icons/fa6";
 import { motion, AnimatePresence } from "framer-motion";
 import SocialIcon from "./SocialIcon.jsx";
@@ -14,7 +18,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
-  // ✅ SEPARATED MOBILE STATES
+  // SEPARATED MOBILE STATES
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [mobileExploreOpen, setMobileExploreOpen] = useState(false);
 
@@ -100,9 +104,9 @@ export default function Navbar() {
           className="md:hidden p-2 text-gray-800"
         >
           <div className="space-y-1.5">
-            <span className="block w-6 h-[2px] bg-current"></span>
-            <span className="block w-6 h-[2px] bg-current"></span>
-            <span className="block w-6 h-[2px] bg-current"></span>
+            <span className="block w-6 h-[2px] bg-[#ff8a1d]"></span>
+            <span className="block w-6 h-[2px] bg-[#ff8a1d]"></span>
+            <span className="block w-6 h-[2px] bg-[#ff8a1d]"></span>
           </div>
         </button>
       </div>
@@ -114,90 +118,122 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
-            className="md:hidden bg-white/90 backdrop-blur-md shadow-sm"
+            className="md:hidden bg-gray-100/90 backdrop-blur-md shadow-sm"
           >
-            <div className="py-3 flex justify-center gap-6 text-gray-700">
+            <div className="py-4 pl-10 text-gray-700">
 
-              <button
-                onClick={() => setMobileExploreOpen(prev => !prev)}
-                className="hover:text-[#e76f00]"
-              >
-                Explore
-              </button>
+              <div className="flex flex-col gap-4">
 
-              {["About", "FAQs", "Blog"].map(item => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  onClick={() => setMobileNavOpen(false)}
-                  className="hover:text-[#e76f00]"
+                {/* EXPLORE */}
+                <button
+                  onClick={() => setMobileExploreOpen(prev => !prev)}
+                  className="flex items-center font-semibold gap-3 hover:text-[#e76f00] transition"
                 >
-                  {item}
-                </a>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                  <FaCompass size={16} className="opacity-70 text-[#8CC63F]" />
+                  <span>Explore</span>
+                </button>
 
-      {/* MOBILE EXPLORE SUB-NAV */}
-      <AnimatePresence>
-        {mobileExploreOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="md:hidden bg-white"
-          >
-            <div className="px-6 py-6 space-y-6">
-
-              {[
-                { key: "researchers", label: "Researchers", items: ["Get Funding", "Collaborate", "Showcase"] },
-                { key: "funders", label: "Funders", items: ["Find Talent", "Support Growth", "Build Community"] },
-                { key: "mentors", label: "Mentors", items: ["Share Insights", "Mentor", "Track Progress"] }
-              ].map(section => (
-                <div key={section.key}>
-                  <button
-                    onClick={() =>
-                      setActiveMobileSection(
-                        activeMobileSection === section.key ? null : section.key
-                      )
-                    }
-                    className="w-full text-left font-medium"
-                  >
-                    {section.label}
-                  </button>
-
-                  <AnimatePresence>
-                    {activeMobileSection === section.key && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 8 }}
-                        className="pl-4 mt-3 space-y-2"
-                      >
-                        {section.items.map(item => (
-                          <a
-                            key={item}
-                            href="#"
-                            className="block text-sm text-gray-700 hover:text-[#ff6e00]"
+                {/* 🔽 EXPLORE SUB MENU (NOW UNDER EXPLORE) */}
+                <AnimatePresence>
+                  {mobileExploreOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      className="ml-12 space-y-4"
+                    >
+                      {[
+                        { key: "researchers", label: "Researchers", items: ["Get Funding", "Collaborate", "Showcase"] },
+                        { key: "funders", label: "Funders", items: ["Find Talent", "Support Growth", "Build Community"] },
+                        { key: "mentors", label: "Mentors", items: ["Share Insights", "Mentor", "Track Progress"] }
+                      ].map(section => (
+                        <div key={section.key}>
+                          <button
+                            onClick={() =>
+                              setActiveMobileSection(
+                                activeMobileSection === section.key ? null : section.key
+                              )
+                            }
+                            className="w-full text-left font-medium"
                           >
-                            {item}
-                          </a>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
+                            {section.label}
+                          </button>
 
-              {/* SOCIALS */}
-              <div className="pt-6 flex flex-col border-t flex gap-4">
-                <SocialIcon Icon={FaFacebookF} />
-                <SocialIcon Icon={FaInstagram} />
-                <SocialIcon Icon={FaXTwitter} />
-                <SocialIcon Icon={FaLinkedinIn} />
-                <SocialIcon Icon={FaYoutube} />
+                          <AnimatePresence>
+                            {activeMobileSection === section.key && (
+                              <motion.div
+                                initial={{ opacity: 0, y: 6 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 6 }}
+                                className="
+                                  mt-3               
+                                  pl-4
+                                  space-y-2
+                                "
+                              >
+                                {section.items.map(item => (
+                                  <a
+                                    key={item}
+                                    href="#"
+                                    className="
+                                      block
+                                      text-sm
+                                      text-gray-700
+                                      hover:text-[#ff6e00]
+                                      transition
+                                    "
+                                  >
+                                    {item}
+                                  </a>
+                                ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* OTHER LINKS */}
+                {[
+                  { label: "About", href: "#about", icon: FaCircleInfo },
+                  { label: "FAQs", href: "#faq", icon: FaCircleQuestion },
+                  { label: "Blog", href: "#blog", icon: FaBlog }
+                ].map(({ label, href, icon: Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    onClick={() => setMobileNavOpen(false)}
+                    className="flex items-center gap-3 text-base font-semibold hover:text-[#e76f00] transition"
+                  >
+                    <Icon size={16} className="opacity-70 text-[#8CC63F]" />
+                    <span className="text-bold">{label}</span>
+                  </a>
+                ))}
+
+                {/* MOBILE SOCIALS — FOOTER STYLE (BLOCK) */}
+                <div className="mt-10 flex flex-col items-start gap-4">
+                  {[FaInstagram, FaLinkedinIn, FaXTwitter, FaYoutube].map((Icon, i) => (
+                    <a
+                      key={i}
+                      href="#"
+                      className="
+                        w-10 h-10
+                        rounded-full
+                        border border-gray-300
+                        flex items-center justify-center
+                        text-gray-600
+                        hover:text-[#e76f00] hover:border-[#e76f00]
+                        transition
+                      "
+                    >
+                      <Icon size={16} />
+                    </a>
+                  ))}
+                </div>
+
               </div>
             </div>
           </motion.div>
