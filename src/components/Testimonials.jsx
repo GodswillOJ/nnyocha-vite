@@ -11,11 +11,9 @@ export default function Testimonial() {
           <div
             className="
               inline-flex items-center
-              px-6 py-2
-              text-sm sm:text-base
+              px-6 py-2 lg:text-4xl text-2xl md:text-5xl
               font-semibold tracking-wide
               text-[#56371a]
-              border border-[#56371a]/30
             "
           >
             Testimonial
@@ -53,8 +51,7 @@ export default function Testimonial() {
 
           {/* QUOTE */}
           <blockquote className="text-gray-700 text-base sm:text-lg leading-relaxed mb-6">
-            “Connecting with mentors and investors here transformed my research
-            direction and opened doors I never imagined.”
+            “Connecting with mentors and investors here transformed my research. The encouragement and resources I found helped me bring my ideas to life. I’ve never felt more supported or part of a community that truly believes in collaboration and progress.”
           </blockquote>
 
           {/* NAME */}

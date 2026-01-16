@@ -62,8 +62,8 @@ export default function WaitlistForm() {
     <section id="wait_list" className="py-24 bg-gray-100">
       <div className="max-w-6xl mx-auto px-6">
 
-        <h2 className="text-4xl text-[#56371a] md:text-5xl font-bold mb-14 text-center">
-          <span className="font-normal text-[#56371a]">Join</span> Waitlist
+        <h2 className="text-4xl text-[#56371a] md:text-5xl font-semibold mb-14 text-center">
+          <span className="font-semibold text-[#56371a]">Join</span> Waitlist
         </h2>
 
         <div className="flex flex-col md:flex-row gap-12 items-stretch">

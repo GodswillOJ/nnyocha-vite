@@ -14,12 +14,11 @@ export default function CTA() {
         {/* LEFT — TEXT */}
         <div>
           <h2 className="text-4xl lg:text-5xl font-semibold leading-tight mb-6">
-            Network, Learn & Grow Together
+            Fuel your research journey today
           </h2>
 
           <p className="text-gray-600 text-lg max-w-md mb-10">
-            A trusted space where researchers, mentors, and funders come together
-            to turn ideas into real-world impact.
+            Step into a supportive network where your ideas matter. Connect with fellow researchers, find mentors who care, and access the funding you need to bring your vision to life. Let’s move forward, together.
           </p>
 
           <a

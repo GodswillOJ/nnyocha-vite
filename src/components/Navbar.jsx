@@ -53,13 +53,18 @@ export default function Navbar() {
       <div className="max-w-8xl mx-auto flex items-center justify-between px-6 min-h-[80px]">
 
         {/* LOGO */}
-        <div className="h-20 md:h-24 flex items-center">
+        <div className="flex items-center h-10 sm:h-12 md:h-14 lg:h-16">
           <img
             src="/icons/NNYOCHA_07.png"
             alt="Nnyocha"
-            className="h-40 md:h-60 lg:h-50 w-72 transition-all"
+            className="
+              h-32 md:h-64 sm:h-44 w-auto
+              object-contain
+              transition-all duration-300
+            "
           />
         </div>
+
 
         {/* DESKTOP NAV */}
         <div className="hidden md:flex w-full justify-between">

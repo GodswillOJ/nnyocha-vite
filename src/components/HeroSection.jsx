@@ -20,11 +20,11 @@ export default function Hero() {
           "
         >
           <span className="block">
-            Where Research Meets
+            Where research meets
           </span>
 
           <span className="block italic font-normal md:mt-2">
-            Mentorship & Capital
+            meets opportunity
           </span>
         </motion.h1>
 
@@ -44,8 +44,7 @@ export default function Hero() {
             font-openSans
           "
         >
-          We connect researchers with mentors, institutions, and funders to turn
-          bold ideas into funded, real-world impact.
+          Discover a welcoming space for researchers, investors, and mentors to connect, collaborate, and bring bold ideas to life. Share your journey, find support, and unlock new possibilities together.
         </motion.p>
 
         {/* CTA */}
@@ -98,7 +97,7 @@ export default function Hero() {
             "
           >
             <img
-              src="https://picsum.photos/1200/800"
+              src="/images/Nnyocha_img1.jpeg"
               alt="Hero visual"
               className="
                 w-full
