@@ -214,6 +214,24 @@ export default function WaitlistForm() {
                   ▼
                 </span>
               </div>
+
+              <textarea
+                name="message"
+                required
+                rows={4}
+                placeholder="How can we support your research?"
+                className="
+                  w-full
+                  px-4 py-3
+                  border border-[#8cc63f]
+                  text-sm
+                  placeholder:text-gray-400
+                  focus:outline-none focus:border-black
+                  transition
+                  resize-none
+                "
+              />
+
               <button
                 type="submit"
                 className="w-full h-12 bg-[#8cc90f] border-none text-white text-sm font-medium hover:bg-[#8cc63f] transition"
