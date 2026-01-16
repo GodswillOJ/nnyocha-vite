@@ -48,7 +48,7 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 pt-4
-      ${scrolled ? "bg-gray-100/40" : "bg-gray-100/40"}`}
+      ${scrolled ? "bg-white" : "bg-gray-100/40"}`}
     >
       <div className="max-w-8xl mx-auto flex items-center justify-between px-6 min-h-[80px]">
 

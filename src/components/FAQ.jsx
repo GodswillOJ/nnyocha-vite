@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaFlask, FaChartLine } from "react-icons/fa"; // example research icons
+import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
   { q: "How can I find a mentor?", a: "Create your profile to access our mentor network. Browse, connect, and start conversations with experienced guides ready to support your research goals." },
@@ -11,73 +11,95 @@ const faqs = [
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
 
-  const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
-    <section id="faq" className="py-24 bg-gray-50 border-t-2 border-gray-200">
-    <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row gap-16">
-        {/* FAQ Section */}
-        <div className="w-full md:w-1/2">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center md:text-left">
-            Answers for your research journey
-            </h2>
+    <section id="faq" className="py-28 bg-white border-t border-gray-200">
+        {/* SECTION HEADING */}
+        <div className="flex justify-center mb-10">
+        <div className="
+            inline-flex items-center
+            px-5 py-2
+            rounded-full font-semibold font-robo
+            text-xs sm:text-sm lg:text-4xl
+            tracking-wide
+            text-[#56371a]
+        ">
+            FAQs
+        </div>
+        </div>
+      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
 
-            <div className="space-y-4">
+        {/* LEFT — FAQ LIST */}
+        <div>
+          <h2 className="text-3xl md:text-4xl font-semibold mb-12">
+            Still looking for answers ?
+          </h2>
+
+          <div className="divide-y divide-gray-200">
             {faqs.map((f, i) => (
-                <div key={i} className="rounded-xl">
-                {/* Question */}
-                <div
-                    className="p-6 cursor-pointer bg-gray-50 flex justify-between items-center font-semibold text-gray-800 shadow-sm hover:shadow-md transition-all"
-                    onClick={() => toggleFAQ(i)}
+              <div key={i} className="py-6">
+
+                {/* QUESTION ROW */}
+                <button
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                  className="w-full flex items-center justify-between text-left"
                 >
+                  <span className="text-lg font-medium text-gray-900">
                     {f.q}
-                    <span
-                    className={`transform transition-transform duration-300 ${
-                        openIndex === i ? "rotate-180" : ""
-                    }`}
+                  </span>
+
+                  {/* PLUS / MINUS */}
+                  <span className="
+                    w-9 h-9
+                    flex items-center justify-center
+                    rounded-full
+                    border border-gray-300
+                    text-xl font-light
+                    text-gray-700
+                  ">
+                    {openIndex === i ? "–" : "+"}
+                  </span>
+                </button>
+
+                {/* ANSWER */}
+                <AnimatePresence>
+                  {openIndex === i && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.3 }}
+                      className="mt-4 max-w-xl"
                     >
-                    ▼
-                    </span>
-                </div>
+                      <p className="text-gray-600 leading-relaxed">
+                        {f.a}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
-                {/* Answer */}
-                {openIndex === i && (
-                    <div className="bg-white rounded-b-xl p-6 shadow-md mt-1 transition-all">
-                    <p className="text-gray-700">{f.a}</p>
-                    </div>
-                )}
-                </div>
+              </div>
             ))}
-            </div>
+          </div>
         </div>
 
-        {/* Quality Research Graphics Section */}
-        <div className="w-full md:w-1/2 flex flex-col sm:flex-row md:flex-col gap-6 md:gap-8 justify-center items-stretch">
-            {/* Graphic Card 1 */}
-            <div className="flex-1 bg-gray-800 rounded-xl p-8 flex flex-col items-center text-white shadow-lg transition transform hover:scale-105 hover:shadow-2xl">
-            <div className="text-5xl sm:text-6xl mb-4">
-                <FaFlask />
-            </div>
-            <h3 className="text-2xl sm:text-xl font-semibold mb-2 text-center">Innovative Experiments</h3>
-            <p className="text-center text-gray-300 text-sm sm:text-base">
-                Explore cutting-edge research tools and methodologies to advance your projects.
-            </p>
-            </div>
-
-            {/* Graphic Card 2 */}
-            <div className="flex-1 bg-gray-800 rounded-xl p-8 flex flex-col items-center text-white shadow-lg transition transform hover:scale-105 hover:shadow-2xl">
-                <div className="text-5xl sm:text-6xl mb-4">
-                    <FaChartLine />
-                </div>
-                <h3 className="text-2xl sm:text-xl font-semibold mb-2 text-center">Data-Driven Insights</h3>
-                <p className="text-center text-gray-300 text-sm sm:text-base">
-                    Analyze and visualize research outcomes to make impactful decisions.
-                </p>
-            </div>
+        {/* RIGHT — SIMPLE VISUAL */}
+        <div className="relative">
+          <div className="
+            rounded-3xl
+            overflow-hidden
+            bg-gray-100
+            aspect-[4/5]
+            shadow-sm
+          ">
+            <img
+              src="https://picsum.photos/800/1000"
+              alt="Research support"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
-    </div>
+
+      </div>
     </section>
   );
 }

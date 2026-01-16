@@ -1,62 +1,103 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode } from "swiper/modules";
+import "swiper/css";
+
+const ctaSlides = [
+  {
+    role: "Researchers",
+    title: "Collaborate & publish faster",
+    image: "https://picsum.photos/700/500?research",
+  },
+  {
+    role: "Mentors",
+    title: "Guide the next generation",
+    image: "https://picsum.photos/700/500?mentor",
+  },
+  {
+    role: "Funders",
+    title: "Back breakthrough ideas",
+    image: "https://picsum.photos/700/500?funding",
+  },
+];
 
 export default function CTA() {
-return (
-<section className="py-24 bg-black text-white">
-    <div className="
-        max-w-5xl mx-auto text-center px-6 relative"
-        >
-        <div className="absolute inset-0 bg-black/55 z-10"></div>
-        <div className="relative overflow-hidden rounded-2xl researchCTA px-6 py-8">
-        {/* Background image with continuous zoom in/out */}
-        <motion.div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('https://picsum.photos/900/400')" }}
-            animate={{ scale: [1, 1.1, 1] }} // zoom in and back out
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
+  return (
+    <section className="py-28 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        
+        {/* LEFT — TEXT */}
+        <div>
+          <h2 className="text-4xl lg:text-5xl font-semibold leading-tight mb-6">
+            Network, Learn & Grow Together
+          </h2>
 
-        {/* Content */}
-        <h2 className="
-            relative z-10
-            font-inter font-normal
-            text-center sm:text-left md:text-center
-            text-2xl sm:text-3xl md:text-4xl lg:text-5xl
-            leading-snug sm:leading-tight
-            px-4 sm:px-6 md:px-10
-            py-6 sm:py-8 md:py-10
-            mb-3
-            max-w-4xl
-        ">
-            Fuel your research journey today
-        </h2>
+          <p className="text-gray-600 text-lg max-w-md mb-10">
+            A trusted space where researchers, mentors, and funders come together
+            to turn ideas into impact.
+          </p>
 
-        <a href="#wait_list">
-            <motion.button
-            initial="rest"
-            whileHover="hover"
-            animate="rest"
-            variants={{
-                rest: { y: 0, scale: 1 },
-                hover: { y: -5, scale: 1.05 },
-            }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          <a
+            href="#wait_list"
             className="
-                px-8 py-2 pb-4
-                bg-[#ff6e00] hover:bg-[#fd9e57]
-                text-black font-inter
-                rounded-xl
-                shadow-[0_-0.6px_0px_rgb(250,248,247)]
-                transition-colors duration-300
-                relative z-10
+              inline-flex items-center justify-center
+              px-8 py-3 rounded-xl
+              bg-[#ff6e00] hover:bg-[#fd9e57]
+              text-white font-medium
+              transition-colors
             "
-            >
-            Join waitlist
-            </motion.button>
-        </a>
+          >
+            Join the Network
+          </a>
         </div>
-    </div>
-</section>
-);
+
+        {/* RIGHT — SLIDER */}
+        <div className="relative">
+          <Swiper
+            modules={[FreeMode]}
+            freeMode
+            grabCursor
+            spaceBetween={24}
+            breakpoints={{
+              320: { slidesPerView: 1.2 },
+              640: { slidesPerView: 1.6 },
+              1024: { slidesPerView: 2.6 },
+            }}
+          >
+            {ctaSlides.map((slide, i) => (
+              <SwiperSlide key={i}>
+                <div className="
+                  relative
+                  h-72
+                  rounded-2xl
+                  overflow-hidden
+                  shadow-xl
+                ">
+                  {/* Image */}
+                  <img
+                    src={slide.image}
+                    alt={slide.role}
+                    className="w-full h-full object-cover"
+                  />
+
+                  {/* Dark overlay */}
+                  <div className="absolute inset-0 bg-black/80" />
+
+                  {/* Text */}
+                  <div className="absolute bottom-6 left-6 right-6 text-white">
+                    <span className="text-sm text-[#8cc63f] hover:font-bold uppercase tracking-wide opacity-80">
+                      {slide.role}
+                    </span>
+                    <h3 className="text-xl text-white font-semibold mt-2">
+                      {slide.title}
+                    </h3>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
+    </section>
+  );
 }
