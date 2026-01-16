@@ -1,28 +1,6 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-
-const initialImages = [
-  { id: 1, src: "https://picsum.photos/500/500?random=1" },
-  { id: 2, src: "https://picsum.photos/500/500?random=2" },
-  { id: 3, src: "https://picsum.photos/500/500?random=3" },
-  { id: 4, src: "https://picsum.photos/500/500?random=4" },
-];
 
 export default function Hero() {
-  const [images, setImages] = useState(initialImages);
-
-  // 🔁 Reorder images every 4 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setImages((prev) => {
-        const shuffled = [...prev];
-        shuffled.push(shuffled.shift()); // rotate positions
-        return shuffled;
-      });
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section className="relative pt-32 pb-32 bg-gray-100 overflow-hidden">
@@ -94,65 +72,44 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* IMAGE GRID */}
+        {/* SINGLE STATIC IMAGE */}
         <motion.div
-          layout
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="
             mt-20
-            grid
-            grid-cols-1
-            sm:grid-cols-2
-            lg:grid-cols-4
-            gap-8 sm:gap-10 lg:gap-12
+            max-w-7xl
+            mx-auto
             relative
             z-10
           "
         >
-          {images.map((img, index) => (
-            <motion.div
-              key={img.id}
-              layout
-              transition={{
-                layout: {
-                  duration: 0.9,
-                  ease: "easeInOut",
-                },
-              }}
-              className={`relative overflow-hidden rounded-xl shadow-xl mx-auto w-full
-
-                ${
-                  index === 0
-                    ? `
-                      h-[260px]
-                      sm:col-span-2 sm:h-[360px]
-                      lg:row-span-2 lg:h-[720px]
-                    `
-                    : index === 3
-                    ? `
-                      h-[260px]
-                      sm:h-[360px]
-                      sm:col-span-2
-                      lg:col-span-2 lg:h-[340px]
-                    `
-                    : `
-                      h-[220px]
-                      sm:h-[260px]
-                      lg:h-[340px]
-                    `
-                }
-              `}
-            >
-              <img
-                src={img.src}
-                alt="Hero visual"
-                className="
-                  w-full h-full object-cover
-                  transition-transform duration-700
-                  hover:scale-105
-                "
-              />
-            </motion.div>
-          ))}
+          <div
+            className="
+              relative
+              overflow-hidden
+              rounded-2xl
+              shadow-xl
+              h-[260px]
+              sm:h-[360px]
+              lg:h-[520px]
+              w-full
+            "
+          >
+            <img
+              src="https://picsum.photos/1200/800"
+              alt="Hero visual"
+              className="
+                w-full
+                h-full
+                object-cover
+                transition-transform
+                duration-700
+                hover:scale-105
+              "
+            />
+          </div>
         </motion.div>
 
       </div>

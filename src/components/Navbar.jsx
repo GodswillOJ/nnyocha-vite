@@ -47,7 +47,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 pt-4
+      className={`fixed top-0 w-full z-50 transition-all duration-300
       ${scrolled ? "bg-white" : "bg-gray-100/40"}`}
     >
       <div className="max-w-8xl mx-auto flex items-center justify-between px-6 min-h-[80px]">
@@ -57,7 +57,7 @@ export default function Navbar() {
           <img
             src="/icons/NNYOCHA_07.png"
             alt="Nnyocha"
-            className="h-40 md:h-60 lg:h-80 w-auto transition-all"
+            className="h-40 md:h-60 lg:h-50 w-72 transition-all"
           />
         </div>
 
