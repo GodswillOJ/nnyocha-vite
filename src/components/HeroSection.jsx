@@ -1,6 +1,24 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function Hero() {
+  const [currentImage, setCurrentImage] =  useState(0);
+
+  const heroImages = [
+    "/images/Nnyocha_img1.jpeg",
+    "/images/energy9.jpg",
+    "/images/pitch5.jpg",
+  ]
+
+  useEffect(
+    () => {
+      const interval = setInterval(
+        () => {
+          setCurrentImage((prev) => (prev + 1) % heroImages.length)
+        }, 6000
+      );
+    }, []
+  );
 
   return (
     <section className="relative pt-32 pb-32 bg-gray-100 overflow-hidden">
@@ -14,17 +32,17 @@ export default function Hero() {
           className="
             text-4xl sm:text-5xl lg:text-6xl
             font-gotham font-bold
-            text-gray-900
+            text-[#56371a]
             leading-tight
             text-center
           "
         >
           <span className="block">
-            Where research
+            Your research has a home.
           </span>
 
           <span className="block italic font-normal md:mt-2">
-            meets opportunity
+            This is where it grows.
           </span>
         </motion.h1>
 
@@ -71,45 +89,57 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* SINGLE STATIC IMAGE */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="
-            mt-20
-            max-w-7xl
-            mx-auto
-            relative
-            z-10
-          "
-        >
-          <div
+          {/* HERO IMAGE — FADE ROTATION */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="
+              mt-20
+              max-w-7xl
+              mx-auto
               relative
-              overflow-hidden
-              rounded-2xl
-              shadow-xl
-              h-[260px]
-              sm:h-[360px]
-              lg:h-[520px]
-              w-full
+              z-10
             "
           >
-            <img
-              src="/images/Nnyocha_img1.jpeg"
-              alt="Hero visual"
+            <div
               className="
+                relative
+                overflow-hidden
+                rounded-2xl
+                shadow-xl
+                h-[260px]
+                sm:h-[360px]
+                lg:h-[520px]
                 w-full
-                h-full
-                object-cover
-                transition-transform
-                duration-700
-                hover:scale-105
               "
-            />
-          </div>
-        </motion.div>
+            >
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={heroImages[currentImage]}
+                  src={heroImages[currentImage]}
+                  alt="Hero visual"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    duration: 1.2,
+                    ease: "easeInOut"
+                  }}
+                  className="
+                    absolute
+                    inset-0
+                    w-full
+                    h-full
+                    object-cover
+                    transition-transform
+                    duration-700
+                    hover:scale-105
+                  "
+                />
+              </AnimatePresence>
+            </div>
+          </motion.div>
 
       </div>
     </section>
