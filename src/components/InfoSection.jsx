@@ -8,7 +8,7 @@ const tabs = [
     title: "Grow your research circle",
     description:
       "Build meaningful relationships with researchers who share your goals.",
-    image: "https://picsum.photos/900/700?1",
+    image: "/images/46942.jpg",
     bg: "bg-[#FBF3E8]",
   },
   {
@@ -17,8 +17,7 @@ const tabs = [
     title: "Work better together",
     description:
       "Work together seamlessly across institutions and disciplines.",
-    image: "https://picsum.photos/900/700?2",
-    bg: "bg-[#EEF3FA]",
+    image: "/images/118745.jpg",
   },
   {
     id: "funded",
@@ -26,7 +25,7 @@ const tabs = [
     title: "Turn ideas into impact",
     description:
       "Access opportunities that turn strong ideas into funded research.",
-    image: "https://picsum.photos/900/700?3",
+    image: "/images/13886.jpg",
     bg: "bg-[#F6F8F4]",
   },
 ];
