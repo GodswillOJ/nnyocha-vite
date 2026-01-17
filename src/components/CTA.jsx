@@ -47,7 +47,7 @@ export default function CTA() {
           "
         >
           <motion.img
-            src="https://picsum.photos/900/700?research"
+            src="/images/beyond1.jpg"
             alt="Researchers collaborating"
             className="w-full h-full object-cover"
             animate={{ scale: [1, 1.02, 1] }}

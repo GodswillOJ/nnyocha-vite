@@ -82,22 +82,26 @@ export default function FAQ() {
           </div>
         </div>
 
-        {/* RIGHT — SIMPLE VISUAL */}
-        <div className="relative">
-          <div className="
-            rounded-3xl
-            overflow-hidden
-            bg-gray-100
-            aspect-[4/5]
-            shadow-sm
-          ">
-            <img
-              src="https://picsum.photos/800/1000"
-              alt="Research support"
-              className="w-full h-full object-cover"
-            />
+          {/* RIGHT — SIMPLE VISUAL */}
+          <div className="relative">
+            <div
+              className="
+                rounded-3xl
+                overflow-hidden
+                bg-gray-100
+                aspect-[4/5]
+                shadow-sm
+              "
+            >
+              <motion.img
+                src="/images/faq1.jpg"
+                alt="Research support"
+                className="w-full h-full object-cover"
+                whileHover={{ scale: 1.15 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+              />
+            </div>
           </div>
-        </div>
 
       </div>
     </section>

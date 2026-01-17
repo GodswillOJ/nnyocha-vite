@@ -9,27 +9,27 @@ const features = [
   {
     title: "Connect with fellow researchers",
     text: "Meet passionate minds eager to collaborate. Grow your network and spark fresh ideas with every conversation.",
-    image: "https://picsum.photos/600/800?1",
+    image: "/images/connect1.jpg",
   },
   {
     title: "Learn from experienced mentors",
     text: "Tap into the wisdom of those who’ve walked your path. Build confidence and skills with every step forward.",
-    image: "https://picsum.photos/600/800?2",
+    image: "/images/mentor1.jpg",
   },
   {
     title: "Unlock research funding",
     text: "Explore funding options designed for your goals. Bring your vision to life with the support you need.",
-    image: "https://picsum.photos/600/800?2",
+    image: "/images/funding1.avif",
   },
   {
     title: "Celebrate your achievements",
     text: "Share your progress, mark milestones, and inspire others. Every win brings us closer as a community.",
-    image: "https://picsum.photos/600/800?2",
+    image: "/images/celebrate1.jpg",
   },
   {
     title: "Work beyond boundaries",
     text: "Join forces with researchers worldwide. Break barriers and create solutions that reach every corner.",
-    image: "https://picsum.photos/600/800?2",
+    image: "/images/aspire_more.jpg",
   },
 ];
 
