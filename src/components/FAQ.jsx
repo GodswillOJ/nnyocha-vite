@@ -19,7 +19,7 @@ export default function FAQ() {
             inline-flex items-center
             px-5 py-2
             rounded-full font-semibold font-robo
-            text-xs sm:text-sm lg:text-4xl
+            text-4xl sm:text-4xl lg:text-4xl
             tracking-wide
             text-[#56371a]
         ">

@@ -20,7 +20,7 @@ export default function Hero() {
           "
         >
           <span className="block">
-            Where research meets
+            Where research
           </span>
 
           <span className="block italic font-normal md:mt-2">
