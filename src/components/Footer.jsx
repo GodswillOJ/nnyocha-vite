@@ -79,7 +79,7 @@ export default function Footer() {
 
           <div className="flex flex-col items-center gap-2 text-sm text-gray-600">
             <p className="font-medium text-gray-800">
-              62, 2nd Floor, Adekomolafe Commercial House, Kudirat Abiola Way, <br /> Oregun, Ikeja, Lagos State.
+              66 Wellington Street West, <br /> Suite 4100 Toronto, ON  M5K 1B7.
             </p>
             <p>
               Contact: (555) 123-4567 
