@@ -38,11 +38,11 @@ export default function Hero() {
           "
         >
           <span className="block">
-            Your research has a home.
+            Where research excellence
           </span>
 
           <span className="block italic font-normal md:mt-2">
-            This is where it grows.
+            is supported, connected and advanced.
           </span>
         </motion.h1>
 
@@ -62,7 +62,7 @@ export default function Hero() {
             font-openSans
           "
         >
-          Discover a welcoming space for researchers, investors, and mentors to connect, collaborate, and bring bold ideas to life. Share your journey, find support, and unlock new possibilities together.
+          A professional platform for credible research. Focused on development, funding, and impact.
         </motion.p>
 
         {/* CTA */}
