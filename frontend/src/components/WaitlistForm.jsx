@@ -252,7 +252,7 @@ export default function WaitlistForm() {
                 type="submit"
                 className="w-full h-12 bg-[#8cc90f] border-none text-white text-sm font-medium hover:bg-[#8cc63f] transition"
               >
-                {loading ? "Sending..." : "Send Waitlist"}
+                {loading ? "Sending..." : "Submit"}
               </button>
             </form>
           </div>
