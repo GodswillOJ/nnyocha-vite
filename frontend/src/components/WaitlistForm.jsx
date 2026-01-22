@@ -250,7 +250,7 @@ export default function WaitlistForm() {
 
               <button
                 type="submit"
-                className="w-full h-12 bg-[#8cc90f] border-none text-white text-sm font-medium hover:bg-[#8cc63f] transition"
+                className="w-full h-12 bg-[#e76f00] border-none text-white text-sm font-medium hover:bg-[#8cc63f] transition"
               >
                 {loading ? "Sending..." : "Submit"}
               </button>

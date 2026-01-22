@@ -4,7 +4,7 @@ import waitlistRoutes from "./routes/waitlist.js";
 
 const app = express();
 
-// ✅ Allow both www and non-www domains
+// Allow both www and non-www domains
 const allowedOrigins = [
   "https://nnyocha.com",
   "https://www.nnyocha.com"

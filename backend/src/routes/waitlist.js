@@ -10,7 +10,7 @@ router.post("/", waitlistLimiter, async (req, res) => {
   const payload = req.body;
 
   try {
-    // 1️⃣ DUPLICATE CHECK (FAST)
+    // DUPLICATE CHECK (FAST)
     const exists = await Waitlist.findOne({
       $or: [{ email: payload.email }, { phone: payload.phone }],
     });
@@ -23,17 +23,17 @@ router.post("/", waitlistLimiter, async (req, res) => {
       });
     }
 
-    // 2️⃣ SAVE TO DB
+    // SAVE TO DB
     await Waitlist.create(payload);
 
-    // 3️⃣ RESPOND IMMEDIATELY (IMPORTANT)
+    // RESPOND IMMEDIATELY (IMPORTANT)
     res.json({
       success: true,
       message: "You’ve been successfully added to the waitlist.",
     });
 
     // =============================
-    // 🔁 BACKGROUND TASKS (NON-BLOCKING)
+    // BACKGROUND TASKS (NON-BLOCKING)
     // =============================
 
     // User confirmation
