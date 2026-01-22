@@ -59,14 +59,11 @@ export default function WaitlistForm() {
     };
 
     try {
-      const res = await fetch(
-        "https://nnyocha-vite-backend.onrender.com/api/waitlist",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        }
-      );
+      const res = await fetch("https://nnyocha-vite-backend.onrender.com/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
       const data = await res.json();
 
