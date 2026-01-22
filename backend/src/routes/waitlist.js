@@ -33,19 +33,36 @@ router.post("/", waitlistLimiter, async (req, res) => {
 
     // Then send emails asynchronously
     (async () => {
+      // 3️⃣ Send emails (user + admin) safely
       try {
+        // User confirmation email
         await transporter.sendMail({
-          from: `"Nnyocha Waitlist" <${process.env.ADMIN_EMAIL}>`,
+          from: `"Nnyocha Waitlist" <${process.env.EMAIL_USER}>`,
           to: payload.email,
           subject: "You’re on the Nnyocha Waitlist 🎉",
-          html: `...`,
+          html: `
+            <h2>Hi ${payload.firstName},</h2>
+            <p>Thanks for joining the Nnyocha waitlist! We'll notify you about updates and early access. !</p>
+            <br/>
+            <strong>Nnyocha Team</strong>
+          `,
         });
 
+        // Admin notification email
         await transporter.sendMail({
-          from: `"Nnyocha Waitlist" <${process.env.ADMIN_EMAIL}>`,
+          from: `"Nnyocha Waitlist" <${process.env.EMAIL_USER}>`,
           to: process.env.ADMIN_EMAIL,
           subject: "📥 New Waitlist Signup",
-          html: `...`,
+          html: `
+            <h3>New waitlist entry for Nnyocha </h3>
+            <ul>
+              <li><strong>Name:</strong> ${payload.firstName} ${payload.lastName}</li>
+              <li><strong>Email:</strong> ${payload.email}</li>
+              <li><strong>Phone:</strong> ${payload.phone}</li>
+              <li><strong>Persona:</strong> ${payload.persona}</li>
+              <li><strong>Message:</strong> ${payload.message}</li>
+            </ul>
+          `,
         });
       } catch (emailError) {
         console.error("Email error:", emailError.message);
