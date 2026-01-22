@@ -291,7 +291,7 @@ export default function WaitlistForm() {
 
             <button
               onClick={() => setModal({ ...modal, open: false })}
-              className="mt-6 w-full h-11 bg-gray-900 text-white text-sm font-medium hover:bg-[#e76f00] transition"
+              className="mt-6 w-full h-11 bg-[#e76f00] text-white text-sm font-medium hover:bg-[#ff6e00] transition"
             >
               Close
             </button>
