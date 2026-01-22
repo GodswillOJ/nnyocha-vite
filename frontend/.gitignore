@@ -1,0 +1,6 @@
+# Logs
+node_modules
+# Editor directories and files
+/node_modules
+.env
+.vite
