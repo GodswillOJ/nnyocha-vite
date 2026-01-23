@@ -122,7 +122,7 @@ export default function WaitlistForm() {
 
           {/* PROMPT CONTAINER */}
           <div className="w-full md:w-1/2 min-h-[240px] sm:min-h-[300px] md:min-h-full relative flex flex-col items-center justify-start md:justify-center px-0">
-            <div className="w-full md:w-[80%] max-w-xl bg-[#56371a] px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-12 text-white shadow-xl">
+            <div className="w-full md:w-[80%] max-w-xl bg-gradient-to-tr from-[#8cc63f] to-[#ff8a1d] px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-12 text-white shadow-xl">
               <motion.div
                 key={activeIndex}
                 initial={{ opacity: 0, y: 16 }}
@@ -131,14 +131,14 @@ export default function WaitlistForm() {
                 transition={{ duration: 0.7, ease: "easeOut" }}
                 className="space-y-4 sm:space-y-5"
               >
-                <h3 className="bg-[#fff]/40 py-10 pl-5 rounded-md text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold leading-snug">
+                <h3 className="py-5 rounded-md text-lg sm:text-xl font-gotham  md:text-2xl lg:text-3xl font-semibold leading-snug">
                   {messages[activeIndex].title}
                 </h3>
-                <p className="text-sm sm:text-base text-white/90 leading-relaxed font-medium">
+                <p className="text-sm sm:text-base font-gotham text-black/100 leading-relaxed font-medium">
                   {messages[activeIndex].body}
                 </p>
                 <div className="pt-4 sm:pt-6">
-                  <span className="inline-block text-[10px] sm:text-xs uppercase tracking-widest text-white/80 font-medium">
+                  <span className="inline-block text-[10px] sm:text-xs uppercase tracking-widest text-gray/80 font-openSans font-medium">
                     Early access • Priority onboarding • Exclusive insights
                   </span>
                 </div>
