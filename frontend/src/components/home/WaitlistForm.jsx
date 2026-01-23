@@ -112,17 +112,16 @@ export default function WaitlistForm() {
 
   return (
     <section id="wait_list" className="py-24 bg-gray-100">
-      <div className="max-w-6xl mx-auto px-6">
-
         <h2 className="text-4xl text-[#56371a] md:text-5xl font-semibold mb-14 text-center">
           <span className="font-semibold text-[#56371a]">Join</span> Waitlist
         </h2>
+      <div className="max-w-6xl mx-auto px-6 py-6 bg-gradient-to-tr from-[#8cc63f] to-[#8cc63f]/10 ">
 
         <div className="flex flex-col md:flex-row gap-12 items-stretch">
 
           {/* PROMPT CONTAINER */}
           <div className="w-full md:w-1/2 min-h-[240px] sm:min-h-[300px] md:min-h-full relative flex flex-col items-center justify-start md:justify-center px-0">
-            <div className="w-full md:w-[80%] max-w-xl bg-gradient-to-tr from-[#8cc63f] to-[#8cc63f] px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-12 text-white shadow-xl">
+            <div className="w-full md:w-[80%] max-w-xl px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-12 text-white shadow-xl">
               <motion.div
                 key={activeIndex}
                 initial={{ opacity: 0, y: 16 }}
@@ -253,10 +252,19 @@ export default function WaitlistForm() {
 
               <button
                 type="submit"
-                className="w-full h-12 bg-[#8cc63f] border-none text-white text-sm font-medium hover:bg-lime-600 transition"
+                className="
+                  w-full h-12
+                  bg-[#8cc63f]
+                  text-white text-sm font-medium
+                  shadow-md
+                  hover:shadow-md
+                  hover:bg-lime-800
+                  transition-all duration-200
+                "
               >
                 {loading ? "Sending..." : "Submit"}
               </button>
+
             </form>
           </div>
 
