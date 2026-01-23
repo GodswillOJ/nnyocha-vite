@@ -187,7 +187,7 @@ export default function Navbar() {
                 <a href="/">
                   <button
                     className={`
-                      flex items-center gap-3 text-[19px] font-semibold transition
+                      flex items-center gap-3 text-[18px] font-semibold transition
                       ${isActive("/") ? activeText : inactiveText}
                     `}
                   >
@@ -205,7 +205,7 @@ export default function Navbar() {
                 {/* EXPLORE */}
                 <button
                   onClick={() => setMobileExploreOpen(prev => !prev)}
-                  className="flex items-center text-[19px] font-semibold gap-3 hover:text-[#e76f00] transition"
+                  className="flex items-center text-[18px] font-semibold gap-3 hover:text-[#e76f00] transition"
                 >
                   <FaCompass size={20} className="opacity-70 text-[#8CC63F]" />
                   <span>Explore</span>
@@ -283,7 +283,7 @@ export default function Navbar() {
                   <a key={label} href={href}>
                     <div
                       className={`
-                        flex items-center gap-3 text-[19px] font-semibold transition
+                        flex items-center gap-3 text-[18px] font-semibold transition
                         ${isActive(href) ? activeText : inactiveText}
                       `}
                     >
@@ -310,7 +310,7 @@ export default function Navbar() {
                         rounded-full
                         border border-gray-300
                         flex items-center justify-center
-                        text-gray-600
+                        text-orange-600
                         hover:text-[#e76f00] hover:border-[#e76f00]
                         transition
                       "

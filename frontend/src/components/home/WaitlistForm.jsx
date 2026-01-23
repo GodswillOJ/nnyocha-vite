@@ -122,7 +122,7 @@ export default function WaitlistForm() {
 
           {/* PROMPT CONTAINER */}
           <div className="w-full md:w-1/2 min-h-[240px] sm:min-h-[300px] md:min-h-full relative flex flex-col items-center justify-start md:justify-center px-0">
-            <div className="w-full md:w-[80%] max-w-xl bg-[#8cc63f] px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-12 text-white shadow-xl">
+            <div className="w-full md:w-[80%] max-w-xl bg-[#56371a] px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-12 text-white shadow-xl">
               <motion.div
                 key={activeIndex}
                 initial={{ opacity: 0, y: 16 }}
@@ -131,7 +131,7 @@ export default function WaitlistForm() {
                 transition={{ duration: 0.7, ease: "easeOut" }}
                 className="space-y-4 sm:space-y-5"
               >
-                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold leading-snug">
+                <h3 className="bg-[#fff]/40 py-10 pl-5 rounded-md text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold leading-snug">
                   {messages[activeIndex].title}
                 </h3>
                 <p className="text-sm sm:text-base text-white/90 leading-relaxed font-medium">
@@ -157,14 +157,14 @@ export default function WaitlistForm() {
                 name="firstName"
                 required
                 placeholder="First name"
-                className="w-full h-12 px-4 border border-[#8cc63f] text-sm placeholder:text-gray-400 focus:outline-none focus:border-black transition"
+                className="w-full h-12 px-4 border border-[#e76f00]/50 text-sm placeholder:text-gray-400 focus:outline-none focus:border-black transition"
               />
 
               <input
                 name="lastName"
                 required
                 placeholder="Last name"
-                className="w-full h-12 px-4 border border-[#8cc63f] text-sm placeholder:text-gray-400 focus:outline-none focus:border-black transition"
+                className="w-full h-12 px-4 border border-[#e76f00]/50 text-sm placeholder:text-gray-400 focus:outline-none focus:border-black transition"
               />
 
               <input
@@ -172,7 +172,7 @@ export default function WaitlistForm() {
                 type="email"
                 required
                 placeholder="Email address"
-                className="w-full h-12 px-4 border border-[#8cc63f] text-sm placeholder:text-gray-400 focus:outline-none focus:border-black transition"
+                className="w-full h-12 px-4 border border-[#e76f00]/50 text-sm placeholder:text-gray-400 focus:outline-none focus:border-black transition"
               />
 
               <div className="w-full">
@@ -183,14 +183,14 @@ export default function WaitlistForm() {
                   countries={defaultCountries}
                   inputClassName="
                     !w-full !h-12
-                    !border !border-[#8cc63f]
+                    !border !border-[#e76f00]/50
                     !rounded-none
                     !text-sm
                     focus:!border-black
                   "
                   countrySelectorStyleProps={{
                     buttonClassName:
-                      "!border !border-[#8cc63f] py-[23px] !px-4 !rounded-none !bg-white",
+                      "!border !border-[#e76f00]/50 py-[23px] !px-4 !rounded-none !bg-white",
                     dropdownStyleProps: {
                       className:
                         "!max-h-64 !overflow-y-auto !shadow-lg !border !border-gray-200",
@@ -206,7 +206,7 @@ export default function WaitlistForm() {
                   className="
                     w-full h-12
                     px-4 pr-12
-                    border border-gray-300
+                    border border-[#e76f00]/50
                     bg-white
                     text-sm text-gray-600
                     appearance-none
@@ -227,7 +227,7 @@ export default function WaitlistForm() {
                   right-5
                   top-1/2
                   -translate-y-1/2
-                  text-gray-400
+                  text-[#e76f00]/60
                   text-xs
                 ">
                   ▼
@@ -242,7 +242,7 @@ export default function WaitlistForm() {
                 className="
                   w-full
                   px-4 py-3
-                  border border-[#8cc63f]
+                  border border-[#e76f00]/50
                   text-sm
                   placeholder:text-gray-400
                   focus:outline-none focus:border-black
@@ -253,7 +253,7 @@ export default function WaitlistForm() {
 
               <button
                 type="submit"
-                className="w-full h-12 bg-[#8cc90f] border-none text-white text-sm font-medium hover:bg-[#8cc63f] transition"
+                className="w-full h-12 bg-[#e76f00] border-none text-white text-sm font-medium hover:bg-orange-600 transition"
               >
                 {loading ? "Sending..." : "Submit"}
               </button>
@@ -294,7 +294,7 @@ export default function WaitlistForm() {
 
             <button
               onClick={() => setModal({ ...modal, open: false })}
-              className="mt-6 w-full h-11 bg-[#e76f00] text-white text-sm font-medium hover:bg-[#ff6e00] transition"
+              className="mt-6 w-full h-11 bg-[#8cc63f] text-white text-sm font-medium hover:bg-[#ff6e00] transition"
             >
               Close
             </button>
