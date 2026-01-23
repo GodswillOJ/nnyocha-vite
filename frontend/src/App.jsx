@@ -1,9 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/home";
+import Home from "./pages/home/home";
 import "./global.css";
-import ScrollToHash from "./components/ScrollToHash.jsx";
-import BackToTop from "./components/BacktoTop.jsx";
+import ScrollToHash from "./components/home/ScrollToHash.jsx";
+import BackToTop from "./components/home/BacktoTop.jsx";
 import usePageTitle from "./hooks/usePageTitle.js";
 
 export default function App() {

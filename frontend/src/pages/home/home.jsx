@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
-import { scrollFadeUp } from "../components/ScrollToHash.jsx"
+import { scrollFadeUp } from "../../components/home/ScrollToHash.jsx"
 
-import Navbar from "../components/Navbar.jsx";
-import Hero from "../components/HeroSection.jsx";
-import Features from "../components/Features.jsx";
-import CTA from "../components/CTA";
-import Testimonial from "../components/Testimonials";
-import FAQ from "../components/FAQ";
-import WaitlistForm from "../components/WaitlistForm";
-import Footer from "../components/Footer";
-import Info from "../components/InfoSection";
+import Navbar from "../../components/home/Navbar.jsx";
+import Hero from "../../components/home/HeroSection.jsx";
+import Features from "../../components/home/Features.jsx";
+import CTA from "../../components/home/CTA";
+import Testimonial from "../../components/home/Testimonials";
+import FAQ from "../../components/home/FAQ";
+import WaitlistForm from "../../components/home/WaitlistForm";
+import Footer from "../../components/home/Footer";
+import Info from "../../components/home/InfoSection";
 
 const AnimatedSection = ({ children }) => (
   <motion.div
