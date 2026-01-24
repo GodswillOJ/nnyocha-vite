@@ -115,7 +115,7 @@ export default function WaitlistForm() {
         <h2 className="text-4xl text-[#56371a] md:text-5xl font-semibold mb-14 text-center">
           <span className="font-semibold text-[#56371a]">Join</span> Waitlist
         </h2>
-      <div className="max-w-6xl mx-auto px-6 py-6 bg-gradient-to-tr from-[#8cc63f] to-[#8cc63f]/10 ">
+      <div className="max-w-6xl mx-auto px-6 py-6 bg-[#fbf3e8] ">
 
         <div className="flex flex-col md:flex-row gap-12 items-stretch">
 
@@ -130,14 +130,14 @@ export default function WaitlistForm() {
                 transition={{ duration: 0.7, ease: "easeOut" }}
                 className="space-y-4 sm:space-y-5"
               >
-                <h3 className="py-5 rounded-md text-lg sm:text-xl font-gotham  md:text-2xl lg:text-3xl font-semibold leading-snug">
+                <h3 className="py-5 rounded-md text-lg sm:text-xl font-gotham  md:text-2xl  lg:text-3xl text-[#56371a] font-semibold leading-snug">
                   {messages[activeIndex].title}
                 </h3>
                 <p className="text-sm sm:text-base font-gotham text-black/100 leading-relaxed font-medium">
                   {messages[activeIndex].body}
                 </p>
                 <div className="pt-4 sm:pt-6">
-                  <span className="inline-block text-[10px] sm:text-xs uppercase tracking-widest text-gray/80 font-openSans font-medium">
+                  <span className="inline-block text-[10px] sm:text-xs uppercase tracking-widest text-[#56371a] font-openSans font-medium">
                     Early access • Priority onboarding • Exclusive insights
                   </span>
                 </div>
@@ -156,14 +156,14 @@ export default function WaitlistForm() {
                 name="firstName"
                 required
                 placeholder="First name"
-                className="w-full h-12 px-4 border border-[#8cc63f]/50 text-sm placeholder:text-gray-400 focus:outline-none focus:border-black transition"
+                className="w-full h-12 px-4 border border-[#56371a]/20 text-sm shadow-md placeholder:text-gray-400 focus:outline-none focus:border-black transition"
               />
 
               <input
                 name="lastName"
                 required
                 placeholder="Last name"
-                className="w-full h-12 px-4 border border-[#8cc63f]/50 text-sm placeholder:text-gray-400 focus:outline-none focus:border-black transition"
+                className="w-full h-12 px-4 border border-[#56371a]/20 text-sm shadow-md placeholder:text-gray-400 focus:outline-none focus:border-black transition"
               />
 
               <input
@@ -171,7 +171,7 @@ export default function WaitlistForm() {
                 type="email"
                 required
                 placeholder="Email address"
-                className="w-full h-12 px-4 border border-[#8cc63f]/50 text-sm placeholder:text-gray-400 focus:outline-none focus:border-black transition"
+                className="w-full h-12 px-4 border border-[#56371a]/20 text-sm shadow-md placeholder:text-gray-400 focus:outline-none focus:border-black transition"
               />
 
               <div className="w-full">
@@ -182,14 +182,14 @@ export default function WaitlistForm() {
                   countries={defaultCountries}
                   inputClassName="
                     !w-full !h-12
-                    !border !border-[#8cc63f]/50
-                    !rounded-none
+                    !border !border-[#56371a]/20
+                    !rounded-none !shadow-md
                     !text-sm
                     focus:!border-black
                   "
                   countrySelectorStyleProps={{
                     buttonClassName:
-                      "!border !border-[#8cc63f]/50 py-[23px] !px-4 !rounded-none !bg-white",
+                      "!border !border-[#56371a]/20 !shadow-md py-[23px] !px-4 !rounded-none !bg-white",
                     dropdownStyleProps: {
                       className:
                         "!max-h-64 !overflow-y-auto !shadow-lg !border !border-gray-200",
@@ -205,7 +205,7 @@ export default function WaitlistForm() {
                   className="
                     w-full h-12
                     px-4 pr-12
-                    border border-[#8cc63f]/50
+                    border border-[#56371a]/20 shadow-md
                     bg-white
                     text-sm text-gray-600
                     appearance-none
@@ -222,11 +222,11 @@ export default function WaitlistForm() {
                 {/* Custom arrow */}
                 <span className="
                   pointer-events-none
-                  absolute
+                  absolute 
                   right-5
                   top-1/2
                   -translate-y-1/2
-                  text-lime-600
+                  text-orange-500
                   text-xs
                 ">
                   ▼
@@ -241,8 +241,8 @@ export default function WaitlistForm() {
                 className="
                   w-full
                   px-4 py-3
-                  border border-[#8cc63f]/50
-                  text-sm
+                  border border-[#56371a]/20
+                  text-sm shadow-md
                   placeholder:text-gray-400
                   focus:outline-none focus:border-black
                   transition
@@ -254,11 +254,11 @@ export default function WaitlistForm() {
                 type="submit"
                 className="
                   w-full h-12
-                  bg-[#8cc63f]
-                  text-white text-sm font-medium
+                  bg-[#e76f00]
+                  text-white text-sm rounded-[16px] font-medium
                   shadow-md
                   hover:shadow-md
-                  hover:bg-lime-800
+                  hover:bg-[#c6650c]
                   transition-all duration-200
                 "
               >
@@ -302,7 +302,7 @@ export default function WaitlistForm() {
 
             <button
               onClick={() => setModal({ ...modal, open: false })}
-              className="mt-6 w-full h-11 bg-[#e76f00] text-white text-sm font-medium hover:bg-orange-500 transition"
+              className="mt-6 w-full h-11 bg-[#8cc63f] text-white text-sm font-medium hover:bg-orange-500 transition"
             >
               Close
             </button>
