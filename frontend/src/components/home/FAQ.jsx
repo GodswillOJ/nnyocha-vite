@@ -94,7 +94,7 @@ export default function FAQ() {
               "
             >
               <motion.img
-                src="/images/faq1.jpg"
+                src="/images/q&a02.png"
                 alt="Research support"
                 className="w-full h-full object-cover"
                 whileHover={{ scale: 1.15 }}

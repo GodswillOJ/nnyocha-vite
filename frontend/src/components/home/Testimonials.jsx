@@ -24,7 +24,7 @@ export default function Testimonial() {
         <div className="mb-20">
           <div className="w-full rounded-3xl overflow-hidden shadow-xl">
             <motion.img
-              src="/images/scholars2.jpg"
+              src="/images/re_test1.png"
               alt="Community testimonial"
               className="w-full h-64 sm:h-80 md:h-[420px] object-cover"
               animate={{ scale: [1, 1.03, 1] }}

@@ -19,17 +19,17 @@ const features = [
   {
     title: "Unlock research funding",
     text: "Explore funding options designed for your goals. Bring your vision to life with the support you need.",
-    image: "/images/funding1.avif",
+    image: "/images/funds_03.png",
   },
   {
     title: "Celebrate your achievements",
     text: "Share your progress, mark milestones, and inspire others. Every win brings us closer as a community.",
-    image: "/images/celebrate1.jpg",
+    image: "/images/celeb_02.png",
   },
   {
     title: "Work beyond boundaries",
     text: "Join forces with researchers worldwide. Break barriers and create solutions that reach every corner.",
-    image: "/images/aspire_more.jpg",
+    image: "/images/re_05.png",
   },
 ];
 
