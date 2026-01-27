@@ -433,7 +433,15 @@ export default function Navbar() {
                 Join a welcoming community driving discovery and impact.
               </p>
             </div>
-            <a href="#wait_list">
+            <a 
+              href="#wait_list"
+              onClick={() => {
+                setOpen(false);
+                setTimeout(() => {
+                  document.getElementById("wait_list")?.scrollIntoView({ behavior: "smooth" });
+                }, 50);
+              }}
+            >
               <motion.button
                 whileHover="hover"
                 initial="rest"

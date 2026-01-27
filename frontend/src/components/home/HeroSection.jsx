@@ -6,8 +6,8 @@ export default function Hero() {
 
   const heroImages = [
     "/images/Nnyocha_img1.jpeg",
-    "/images/energy9.jpg",
-    "/images/pitch5.jpg",
+    "/images/hero_001.jpeg",
+    "/images/hero_002.jpeg",
   ]
 
   useEffect(

@@ -25,7 +25,7 @@ const tabs = [
     title: "Turn ideas into impact",
     description:
       "Access opportunities that turn strong ideas into funded research.",
-    image: "/images/get_funded_20.png",
+    image: "/images/funds___102.png",
     bg: "bg-[#F6F8F4]",
   },
 ];
