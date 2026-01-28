@@ -5,6 +5,7 @@ import "./global.css";
 import ScrollToHash from "./components/home/ScrollToHash.jsx";
 import BackToTop from "./components/home/BacktoTop.jsx";
 import usePageTitle from "./hooks/usePageTitle.js";
+import About from "./pages/about/page.jsx";
 
 export default function App() {
   usePageTitle();
@@ -14,6 +15,7 @@ export default function App() {
       <ScrollToHash />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
       </Routes>
 
       {/* Global Back to Top */}
