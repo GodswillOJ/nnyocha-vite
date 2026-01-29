@@ -65,11 +65,11 @@ export default function AboutNNyocha() {
 
             {/* CONTACT / INFO BOX */}
             <div className="bg-white rounded-2xl shadow-sm p-6">
-                <p className="text-sm text-gray-500 mb-2">
+                <p className="text-sm text-[#56371a] mb-2">
                 Need assistance?
                 </p>
 
-                <h4 className="text-xl font-semibold text-gray-900 mb-4">
+                <h4 className="text-xl font-semibold text-[#56371a] mb-4">
                 Contact NNyocha
                 </h4>
 
@@ -79,8 +79,8 @@ export default function AboutNNyocha() {
                     </div>
 
                     <div>
-                        <p className="text-sm text-gray-500">Canada</p>
-                        <p className="text-lg font-semibold text-gray-900">
+                        <p className="text-sm text-[#56371a]">Canada</p>
+                        <p className="text-lg font-semibold text-[#56371a]">
                         +1 (416) 555-0199
                         </p>
                     </div>
@@ -130,7 +130,7 @@ export default function AboutNNyocha() {
                           sm:text-4xl
                           lg:text-5xl
                           font-semibold
-                          text-gray-900
+                          text-[#56371a]
                           mb-6
                         "
                       >
@@ -142,7 +142,7 @@ export default function AboutNNyocha() {
                           text-base
                           sm:text-lg
                           leading-relaxed
-                          text-gray-600
+                          text-[#56371a]
                         "
                       >
                         {current.description}

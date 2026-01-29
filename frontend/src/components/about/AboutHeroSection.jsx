@@ -46,18 +46,39 @@ export default function AboutHeroSection() {
         "
         >
         {/* Eyebrow */}
+        <div className="relative inline-block">
+        {/* Base text */}
         <span
             className="
-            text-[11px]
-            sm:text-xs
-            font-semibold
-            tracking-widest
-            uppercase
+            relative z-10
+            font-extrabold
             text-[#e76f00]
+            text-sm
+            sm:text-base
+            md:text-lg
+            lg:text-xl
+            xl:text-2xl
+            tracking-wide
+            uppercase
             "
         >
-            About Us
+            About us
         </span>
+
+        {/* Shine */}
+        <span
+            className="
+            absolute inset-0
+            bg-gradient-to-r
+            from-transparent
+            via-white/40
+            to-transparent
+            opacity-60
+            pointer-events-none
+            rounded
+            "
+        />
+        </div>
 
         {/* Heading */}
         <h1

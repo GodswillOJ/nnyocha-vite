@@ -30,7 +30,7 @@ const founders = [
 
 export default function AboutFounders() {
   return (
-    <section className="relative bg-white py-24">
+    <section className="relative bg-white ">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
         {/* INTRO */}
