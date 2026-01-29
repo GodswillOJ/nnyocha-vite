@@ -16,8 +16,8 @@ export default function App() {
       <ScrollToHash />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/about@_staging" element={<About />} />
+        <Route path="/contact@_staging" element={<ContactUs />} />
       </Routes>
 
       {/* Global Back to Top */}
