@@ -4,6 +4,7 @@ import AboutHeroSection from "../../components/about/AboutHeroSection";
 import AboutFounders from "../../components/about/AboutFounders";
 import AboutNNyocha from "../../components/about/aboutNnyocha";
 import { motion } from "framer-motion";
+import { scrollFadeUp } from "../../components/home/ScrollToHash";
 
 const AnimatedSection = ({ children }) => (
   <motion.div
