@@ -7,6 +7,7 @@ import BackToTop from "./components/home/BacktoTop.jsx";
 import usePageTitle from "./hooks/usePageTitle.js";
 import About from "./pages/about/page.jsx";
 import ContactUs from "./pages/contact/page.jsx";
+import BlogPage from "./pages/blog/landing/page.jsx";
 
 export default function App() {
   usePageTitle();
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about@_staging" element={<About />} />
         <Route path="/contact@_staging" element={<ContactUs />} />
+        <Route path="/blog@_staging" element={<BlogPage />} />
       </Routes>
 
       {/* Global Back to Top */}

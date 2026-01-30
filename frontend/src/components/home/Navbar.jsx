@@ -58,7 +58,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300
+      className={`fixed top-0 left-0 w-full z-50 overflow-hidden bg-white transition-all duration-300 h-20
       ${scrolled ? "bg-white" : "bg-gray-100/40"}`}
     >
       <div className="max-w-8xl mx-auto flex items-center justify-between px-6 min-h-[80px]">
@@ -107,7 +107,7 @@ export default function Navbar() {
             </button>
 
             <a href="#faqs" className="hover:text-[#e76f00]">FAQs</a>
-            <a href="#" className="hover:text-[#e76f00]">Blog</a>
+            <a href="#blog" className="hover:text-[#e76f00]">Blog</a>
           </div>
 
           <div className="ml-auto">
