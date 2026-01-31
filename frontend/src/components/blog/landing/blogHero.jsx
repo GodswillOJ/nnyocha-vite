@@ -24,7 +24,7 @@ export default function BlogHero() {
           className="max-w-3xl text-white"
         >
           {/* CATEGORY / EYEBROW */}
-          <span className="inline-block mb-4 text-xs font-semibold tracking-widest uppercase text-[#8cc63f]">
+          <span className="inline-block font-openSans mb-4 text-xs font-semibold tracking-widest uppercase text-[#8cc63f]">
             Nnyocha Blog
           </span>
 
@@ -35,7 +35,7 @@ export default function BlogHero() {
           </h1>
 
           {/* DESCRIPTION */}
-          <p className="mt-5 text-[14.5px] sm:text-[16px] md:text-[17px] text-white/90 leading-relaxed">
+          <p className="mt-5 text-[14.5px] sm:text-[16px] md:text-[17px] font-openSans text-white/90 leading-relaxed">
             Explore expert perspectives on research innovation, academic
             collaboration, mentorship, and funding opportunities — curated to
             support scholars, institutions, and changemakers across Africa.

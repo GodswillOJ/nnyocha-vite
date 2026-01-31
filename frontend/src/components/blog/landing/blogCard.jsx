@@ -22,22 +22,22 @@ export default function BlogCard({ post }) {
       </div>
 
       {/* Content */}
-      <div className="p-6 space-y-3">
-        <div className="text-xs text-gray-500 flex items-center gap-2">
+      <div className="p-6 font-openSans space-y-3">
+        <div className="text-xs text-[#56371a] flex items-center gap-2">
           <span>{post.date}</span>
           <span>•</span>
           <span>{post.readTime}</span>
         </div>
 
-        <h3 className="text-lg font-semibold text-gray-900 leading-snug">
+        <h3 className="text-lg font-bold text-[#56371a] leading-snug">
           {post.title}
         </h3>
 
-        <p className="text-sm text-gray-600 leading-relaxed">
+        <p className="text-sm text-[#56371a] leading-relaxed">
           {post.excerpt}
         </p>
 
-        <div className="pt-3 text-sm font-medium text-gray-800">
+        <div className="pt-3 text-sm font-semibold text-[#56371a]">
           {post.author}
         </div>
       </div>
