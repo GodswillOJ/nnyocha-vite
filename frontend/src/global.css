@@ -16,3 +16,11 @@ body {
 .offers:hover{
     color: #ff6e00;
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

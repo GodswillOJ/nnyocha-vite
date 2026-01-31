@@ -26,7 +26,7 @@ export default function Navbar() {
   const inactiveText = "hover:text-[#e76f00]";
 
   const activeIcon = "text-[#e76f00]";
-  const inactiveIcon = "text-[#8CC63F]";
+  const inactiveIcon = "text-[#56371a]";
 
 
   // SEPARATED MOBILE STATES
@@ -35,6 +35,12 @@ export default function Navbar() {
 
   const [activeMobileSection, setActiveMobileSection] = useState(null);
   const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileNavOpen ? "hidden" : "";
+    return () => (document.body.style.overflow = "");
+  }, [mobileNavOpen]);
+
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -58,13 +64,15 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 overflow-hidden bg-white transition-all duration-300 h-20
-      ${scrolled ? "bg-white" : "bg-gray-100/40"}`}
+      className={`fixed top-0 left-0 w-full z-50 bg-white transition-all duration-300
+        ${scrolled ? "bg-white" : "bg-gray-100/40"}
+        overflow-visible 
+      `}
     >
       <div className="max-w-8xl mx-auto flex items-center justify-between px-6 min-h-[80px]">
 
         {/* LOGO */}
-        <div className="flex items-center h-10 sm:h-12 md:h-14 lg:h-16">
+        <div className="flex overflow-hidden items-center h-10 sm:h-12 md:h-14 lg:h-16">
           <a href="/">
           <img
             src="/icons/NNYOCHA_07.png"
@@ -178,7 +186,24 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
-            className="md:hidden bg-gray-100/90 backdrop-blur-md shadow-sm"
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="
+              scrollbar-hide
+              md:hidden
+              fixed
+              top-[80px]
+              left-0
+              w-full
+              z-40
+              bg-white
+              backdrop-blur-md
+              border-t
+
+              max-h-[calc(100vh-80px)]
+              overflow-y-auto
+              overscroll-contain
+              scroll-smooth
+            "
           >
             <div className="py-6 pl-10 text-gray-700">
 
@@ -187,7 +212,7 @@ export default function Navbar() {
                 <a href="/">
                   <button
                     className={`
-                      flex items-center gap-3 text-[18px] font-semibold transition
+                      flex items-center gap-3 text-[18px] font-semibold text-[#56371a] transition
                       ${isActive("/") ? activeText : inactiveText}
                     `}
                   >
@@ -205,9 +230,9 @@ export default function Navbar() {
                 {/* EXPLORE */}
                 <button
                   onClick={() => setMobileExploreOpen(prev => !prev)}
-                  className="flex items-center text-[18px] font-semibold gap-3 hover:text-[#e76f00] transition"
+                  className="flex items-center text-[#56371a] text-[18px] font-semibold gap-3 hover:text-[#e76f00] transition"
                 >
-                  <FaCompass size={20} className="opacity-70 text-[#8CC63F]" />
+                  <FaCompass size={20} className="opacity-70 text-[#56371a]" />
                   <span>Explore</span>
                 </button>
 
@@ -232,7 +257,7 @@ export default function Navbar() {
                                 activeMobileSection === section.key ? null : section.key
                               )
                             }
-                            className="w-full text-[16px] text-left font-medium"
+                            className="w-full text-[16px] text-left text-[#56371a] font-medium"
                           >
                             {section.label}
                           </button>
@@ -256,7 +281,7 @@ export default function Navbar() {
                                     className="
                                       block
                                       text-[16px]
-                                      text-gray-700
+                                      text-[#56371a]
                                       hover:text-[#ff6e00]
                                       transition
                                     "
@@ -283,7 +308,7 @@ export default function Navbar() {
                   <a key={label} href={href}>
                     <div
                       className={`
-                        flex items-center gap-3 text-[18px] font-semibold transition
+                        flex items-center gap-3 text-[#56371a] text-[18px] font-semibold transition
                         ${isActive(href) ? activeText : inactiveText}
                       `}
                     >
@@ -310,7 +335,7 @@ export default function Navbar() {
                         rounded-full
                         border border-gray-300
                         flex items-center justify-center
-                        text-orange-600
+                        text-[#56371a]
                         hover:text-[#e76f00] hover:border-[#e76f00]
                         transition
                       "
