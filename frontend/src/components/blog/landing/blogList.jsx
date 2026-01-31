@@ -114,12 +114,12 @@ export default function BlogList() {
                 {otherPosts.map((post) => (
                     <div
                     key={post.id}
-                    className="flex font-openSans gap-3 items-start"
+                    className="flex flex-col sm:flex-row font-openSans gap-3 sm:items-start"
                     >
                     <img
                         src={post.image}
                         alt={post.title}
-                        className="w-16 h-16 rounded-lg object-cover"
+                        className="w-full sm:w-16 h-40 sm:h-16 rounded-lg object-cover"
                     />
 
                     <div className="space-y-1">
