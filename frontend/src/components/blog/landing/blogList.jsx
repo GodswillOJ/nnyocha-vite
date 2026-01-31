@@ -61,48 +61,69 @@ export default function BlogList() {
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
 
             {/* ========= LEFT: BLOG GRID ========= */}
-            <motion.div
-                layout
-                className="lg:col-span-3 grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
-            >
-                {paginatedPosts.map((post) => (
-                <motion.div
-                    key={post.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4 }}
-                >
-                    <BlogCard post={post} />
-                </motion.div>
+            <div>
+              <motion.div
+                  layout
+                  className="lg:col-span-3 grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+              >
+                  {paginatedPosts.map((post) => (
+                  <motion.div
+                      key={post.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4 }}
+                  >
+                      <BlogCard post={post} />
+                  </motion.div>
+                  ))}
+              </motion.div>
+
+              {/* Pagination */}
+              <div className="flex justify-center gap-2 pt-10">
+                {Array.from({ length: totalPages }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentPage(index + 1)}
+                    className={`w-9 h-9 rounded-lg text-sm font-medium transition
+                      ${
+                        currentPage === index + 1
+                          ? "bg-[#56371a] text-white"
+                          : "bg-gray-100 text-[#56371a] hover:bg-gray-200"
+                      }
+                    `}
+                  >
+                    {index + 1}
+                  </button>
                 ))}
-            </motion.div>
+              </div>
+            </div>
 
             {/* ========= RIGHT: SIDEBAR ========= */}
             <aside className="lg:col-span-1 space-y-8">
 
                 {/* ===== FEATURED POST ===== */}
                 <div className="rounded-2xl overflow-hidden bg-gray-900 text-white">
-                <img
-                    src={featuredPost.image}
-                    alt={featuredPost.title}
-                    className="h-40 w-full object-cover"
-                />
+                  <img
+                      src={featuredPost.image}
+                      alt={featuredPost.title}
+                      className="h-40 w-full object-cover"
+                  />
 
-                <div className="p-4 font-gotham space-y-2">
-                    <span className="text-xs uppercase tracking-wide text-gray-300">
-                    Featured
-                    </span>
+                  <div className="p-4 font-gotham space-y-2">
+                      <span className="text-xs uppercase tracking-wide text-gray-300">
+                      Featured
+                      </span>
 
-                    <h3 className="font-semibold hover:text-[#8cc637] leading-snug">
-                    {featuredPost.title}
-                    </h3>
+                      <h3 className="font-semibold hover:text-[#8cc637] leading-snug">
+                      {featuredPost.title}
+                      </h3>
 
-                    <div className="text-xs text-gray-300 flex gap-2">
-                    <span>{featuredPost.date}</span>
-                    <span>•</span>
-                    <span>{featuredPost.readTime}</span>
-                    </div>
-                </div>
+                      <div className="text-xs text-gray-300 flex gap-2">
+                      <span>{featuredPost.date}</span>
+                      <span>•</span>
+                      <span>{featuredPost.readTime}</span>
+                      </div>
+                  </div>
                 </div>
 
                 {/* ===== OTHER POSTS ===== */}
@@ -141,24 +162,6 @@ export default function BlogList() {
             </div>
         </div>
 
-      {/* Pagination */}
-      <div className="flex justify-center gap-2 pt-10">
-        {Array.from({ length: totalPages }).map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentPage(index + 1)}
-            className={`w-9 h-9 rounded-lg text-sm font-medium transition
-              ${
-                currentPage === index + 1
-                  ? "bg-[#56371a] text-white"
-                  : "bg-gray-100 text-[#56371a] hover:bg-gray-200"
-              }
-            `}
-          >
-            {index + 1}
-          </button>
-        ))}
-      </div>
     </section>
   );
 }
