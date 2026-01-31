@@ -35,7 +35,7 @@ export default function BlogSubscribe() {
                 </button>
               </form>
 
-              <p className="text-xs font-openSans text-lime-600">
+              <p className="text-xs font-semibold text-lime-600">
                 No spam. Unsubscribe anytime.
               </p>
             </div>

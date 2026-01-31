@@ -24,7 +24,7 @@ export default function BlogHero() {
           className="max-w-3xl text-white"
         >
           {/* CATEGORY / EYEBROW */}
-          <span className="inline-block font-openSans mb-4 text-xs font-semibold tracking-widest uppercase text-[#8cc63f]">
+          <span className="inline-block font-openSans mb-4 text-xs font-semibold tracking-widest uppercase text-[#e76f00]">
             Nnyocha Blog
           </span>
 

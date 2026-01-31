@@ -28,7 +28,7 @@ export default function BlogList() {
     <section className="max-w-7xl mx-auto px-6 py-20 space-y-12">
       {/* Header */}
       <div className="max-w-2xl">
-        <h2 className="text-3xl font-bold text-[#e76f00]">Blog</h2>
+        <h2 className="text-3xl font-bold text-lime-600">Blog</h2>
         <p className="text-[#56371a] font-openSans mt-2">
           Insights, research perspectives, and academic stories shaping Africa’s
           future.
@@ -107,7 +107,7 @@ export default function BlogList() {
 
                 {/* ===== OTHER POSTS ===== */}
                 <div className="space-y-4">
-                <h4 className="text-lg font-openSans font-semibold text-[#e76f00]">
+                <h4 className="text-lg font-openSans font-bold text-lime-600">
                     Other posts
                 </h4>
 
