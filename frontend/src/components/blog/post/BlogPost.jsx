@@ -13,18 +13,49 @@ const API_URL = `${BACKEND_URL}/api/posts`;
 export default function BlogPost() {
   const { slug } = useParams();
   const location = useLocation();
-  const [post, setPost] = useState(location.state?.post || null);
+
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
   const [relatedPosts, setRelatedPosts] = useState([]);
 
   // Fetch main post if not in state
   useEffect(() => {
-    if (!post) {
-      fetch(`${API_URL}/${slug}`)
-        .then((res) => res.json())
-        .then(setPost)
-        .catch((err) => console.error("Error fetching post:", err));
+    const controller = new AbortController();
+
+    async function loadPost() {
+      try {
+        // Use state immediately if available
+        if (location.state?.post?.slug === slug) {
+          setPost(location.state.post);
+          setLoading(false);
+          return;
+        }
+
+        // Always have a fallback fetch
+        const res = await fetch(`${API_URL}/${slug}`, {
+          signal: controller.signal,
+        });
+
+        if (!res.ok) throw new Error("Post not found");
+
+        const data = await res.json();
+        setPost(data);
+      } catch (err) {
+        if (err.name !== "AbortError") {
+          console.error(err);
+          setError(true);
+        }
+      } finally {
+        setLoading(false);
+      }
     }
-  }, [slug, post]);
+
+    loadPost();
+
+    return () => controller.abort();
+  }, [slug, location.state]);
 
   // Fetch related posts by category
   useEffect(() => {
@@ -39,9 +70,23 @@ export default function BlogPost() {
     }
   }, [post]);
 
-  if (!post) {
-    return <div className="py-40 text-center text-gray-500">Loading...</div>;
-  }
+    if (loading) {
+  return (
+    <div className="min-h-[60vh] flex items-center justify-center text-gray-500">
+      Loading article…
+    </div>
+  );
+}
+if (error || !post) {
+  return (
+    <div className="min-h-[60vh] flex flex-col items-center justify-center gap-4">
+      <p className="text-gray-600">This post could not be loaded.</p>
+      <Link to="/blog" className="text-[#e76f00] hover:underline">
+        Back to blog
+      </Link>
+    </div>
+  );
+}
 
   const formattedDate = dayjs(post.createdAt).format("MMMM D, YYYY");
 
@@ -59,7 +104,6 @@ export default function BlogPost() {
       'a': sanitizeHtml.simpleTransform('a', { target: '_blank', rel: 'noopener noreferrer' })
     }
   });
-
   return (
     <>
       <article className="bg-white">
@@ -122,82 +166,100 @@ export default function BlogPost() {
         </ol>
       </nav>
 
-        {/* HERO IMAGE */}
-        <section className="relative h-[70vh] overflow-hidden">
-          <img
-            src={post.image || "/placeholder-image.jpg"}
-            alt={post.title}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/25" />
+      {/* HERO IMAGE */}
+      <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden">
+        <img
+          src={post.image || "/placeholder-image.jpg"}
+          alt={post.title}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/25" />
 
-          {/* Author + Date overlay on hero image */}
-          <div
-            className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 
+        {/* Author + Date overlay */}
+        <div
+          className="absolute bottom-3 left-3 sm:bottom-5 sm:left-5 md:bottom-6 md:left-6 
                     backdrop-blur-sm 
-                      px-3 sm:px-4 py-1.5 sm:py-2 
-                      rounded-lg 
-                      text-white text-xs sm:text-sm 
-                      flex flex-col gap-0.5
-                      hover:bg-[#7aba33] transition-colors duration-300 shadow-md"
-          >
-            <span className="font-medium truncate">{post.author}</span>
-            <span className="text-xs sm:text-sm">{formattedDate}</span>
-          </div>
+                    px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 
+                    rounded-lg 
+                    text-white text-xs sm:text-sm md:text-base 
+                    flex flex-col gap-0.5
+                    hover:bg-[#7aba33] transition-colors duration-300 shadow-md"
+        >
+          <span className="font-medium truncate max-w-[120px] sm:max-w-[160px] md:max-w-[200px]">
+            {post.author}
+          </span>
+          <span className="text-[10px] sm:text-xs md:text-sm">{formattedDate}</span>
+        </div>
+      </section>
 
-        </section>
+      {/* CONTENT + RELATED POSTS */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-12 sm:py-16 grid gap-10 lg:grid-cols-4">
+        {/* Main content */}
+        <div className="lg:col-span-3">
+          {/* Post Title */}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-snug break-words">
+            {post.title}
+          </h1>
 
-        {/* CONTENT + RELATED POSTS */}
-        <section className="max-w-7xl mx-auto px-6 py-20 grid gap-12 lg:grid-cols-4">
-          {/* Main content */}
-          <div className="lg:col-span-3">
-            <h1 className="text-4xl font-bold mb-2">{post.title}</h1>
+          {/* Post Content */}
+          <div
+            className="
+              prose max-w-full
+              prose-sm sm:prose md:prose-md lg:prose-lg xl:prose-xl
+              mt-6 sm:mt-8
+              [&>img]:w-full [&>img]:h-auto [&>img]:object-contain
+              [&>iframe]:w-full [&>iframe]:h-auto
+              [&>h1]:text-2xl sm:[&>h1]:text-3xl md:[&>h1]:text-4xl lg:[&>h1]:text-5xl
+              [&>h2]:text-xl sm:[&>h2]:text-2xl md:[&>h2]:text-3xl lg:[&>h2]:text-4xl
+              [&>h3]:text-lg sm:[&>h3]:text-xl md:[&>h3]:text-2xl lg:[&>h3]:text-3xl
+              break-words
+            "
+            dangerouslySetInnerHTML={{ __html: contentHTML }}
+          />
+        </div>
 
-            <div
-              className="prose prose-lg max-w-none mt-10"
-              dangerouslySetInnerHTML={{ __html: contentHTML }}
-            />
-          </div>
-
-          {/* Related posts sidebar */}
-          {relatedPosts.length > 0 && (
-            <div className="lg:col-span-1 space-y-6">
-              <h2 className="text-2xl font-semibold mb-4">Related Posts</h2>
-              <div className="flex flex-col md:flex-col gap-4">
-                {relatedPosts.map((rPost) => (
-                  <Link
-                    to={`/blog/${rPost.slug}`}
-                    key={rPost._id}
-                    state={{ post: rPost }}
+        {/* Related posts sidebar */}
+        {relatedPosts.length > 0 && (
+          <div className="lg:col-span-1 space-y-6">
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">Related Posts</h2>
+            <div className="flex flex-col gap-4">
+              {relatedPosts.map((rPost) => (
+                <Link
+                  to={`/blog/${rPost.slug}`}
+                  key={rPost._id}
+                  state={{ post: rPost }}
+                >
+                  <motion.div
+                    whileHover={{ y: -3 }}
+                    transition={{ duration: 0.2 }}
+                    className="border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-lg bg-white"
                   >
-                    <motion.div
-                      whileHover={{ y: -3 }}
-                      transition={{ duration: 0.2 }}
-                      className="border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-lg bg-white"
-                    >
-                      <div className="relative h-36 overflow-hidden">
-                        <img
-                          src={rPost.image}
-                          alt={rPost.title}
-                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                        />
-                        <div className="absolute bottom-2 left-2 bg-black/50 backdrop-blur px-2 py-1 rounded text-white text-xs flex flex-col gap-0.5">
-                          <span>{rPost.author}</span>
-                          <span>{dayjs(rPost.createdAt).format("MMM D, YYYY")}</span>
-                        </div>
+                    {/* Post Image */}
+                    <div className="relative h-32 sm:h-36 md:h-40 overflow-hidden">
+                      <img
+                        src={rPost.image || "/placeholder-image.jpg"}
+                        alt={rPost.title}
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                      />
+                      <div className="absolute bottom-1 left-1 sm:bottom-2 sm:left-2 bg-black/50 backdrop-blur px-2 py-0.5 sm:px-2 sm:py-1 rounded text-white text-[10px] sm:text-xs flex flex-col gap-0.5">
+                        <span className="truncate max-w-[80px] sm:max-w-[120px]">{rPost.author}</span>
+                        <span>{dayjs(rPost.createdAt).format("MMM D, YYYY")}</span>
                       </div>
-                      <div className="p-3">
-                        <h3 className="text-sm font-semibold text-gray-800 leading-snug">
-                          {rPost.title}
-                        </h3>
-                      </div>
-                    </motion.div>
-                  </Link>
-                ))}
-              </div>
+                    </div>
+
+                    {/* Post Title */}
+                    <div className="p-2 sm:p-3">
+                      <h3 className="text-xs sm:text-sm md:text-base font-semibold text-gray-800 leading-snug line-clamp-2 break-words">
+                        {rPost.title}
+                      </h3>
+                    </div>
+                  </motion.div>
+                </Link>
+              ))}
             </div>
-          )}
-        </section>
+          </div>
+        )}
+      </section>
       </article>
     </>
   );
