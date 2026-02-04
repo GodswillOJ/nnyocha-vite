@@ -8,6 +8,8 @@ import usePageTitle from "./hooks/usePageTitle.js";
 import About from "./pages/about/page.jsx";
 import ContactUs from "./pages/contact/page.jsx";
 import BlogPage from "./pages/blog/landing/page.jsx";
+import BlogPostPage from "./pages/blog/post/page.jsx";
+import CreateBlogPostPage from "./pages/blog/createPost/page.jsx";
 
 export default function App() {
   usePageTitle();
@@ -20,6 +22,8 @@ export default function App() {
         <Route path="/about@_staging" element={<About />} />
         <Route path="/contact@_staging" element={<ContactUs />} />
         <Route path="/blog@_staging" element={<BlogPage />} />
+        <Route path="/admin/posts/new" element={<CreateBlogPostPage />} />
+        <Route path="/blog/:slug" element={<BlogPostPage />} />
       </Routes>
 
       {/* Global Back to Top */}

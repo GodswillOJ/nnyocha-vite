@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../../../components/home/Navbar";
-import BlogPost from "../../../components/blog/post/BlogPost";
+import CreatePost from "../../../components/admin/posts/newPost";
 import Footer from "../../../components/home/Footer";
 import BlogSubscribe from "../../../components/blog/landing/blogSubscribe";
 import { motion } from "framer-motion";
@@ -17,15 +17,15 @@ const AnimatedSection = ({ children }) => (
   </motion.div>
 );
 
-export default function BlogPostPage() {
+export default function CreateBlogPostPage() {
   return (
     <main>
       <Navbar />
       {/* BLOG LIST (COMING NEXT) */}
-      <section className="bg-white mt-32">
+      <section className="bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <AnimatedSection>
-        <BlogPost />
+        <CreatePost />
         </AnimatedSection>
         </div>
       </section>

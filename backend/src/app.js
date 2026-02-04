@@ -1,35 +1,40 @@
 import express from "express";
 import cors from "cors";
 import waitlistRoutes from "./routes/waitlist.js";
+import postRoutes from "./routes/posts.js";
 
 const app = express();
 
-// Allow both www and non-www domains
+// ✅ CORS
 const allowedOrigins = [
   "https://nnyocha.com",
-  "https://www.nnyocha.com"
+  "https://www.nnyocha.com",
+  "http://localhost:5173",
 ];
 
-app.use(cors({
-  origin: function(origin, callback){
-    // Allow requests with no origin (like Postman or server-to-server)
-    if(!origin) return callback(null, true);
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin) return callback(null, true);
+      if (!allowedOrigins.includes(origin)) {
+        return callback(
+          new Error("CORS policy does not allow this origin."),
+          false
+        );
+      }
+      callback(null, true);
+    },
+    credentials: true,
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
-    if(allowedOrigins.indexOf(origin) === -1){
-      const msg = `The CORS policy for this site does not allow access from the specified Origin.`;
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
-  credentials: true,
-  methods: ["GET", "POST", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
-
-// Body parser
+// ✅ JSON parser
 app.use(express.json());
 
-// Routes
+// ✅ Routes
 app.use("/api/waitlist", waitlistRoutes);
+app.use("/api/posts", postRoutes);
 
 export default app;
