@@ -1,6 +1,7 @@
 import BlogPost from "../models/BlogPost.js"
 import slugify from "slugify";
 import sanitizeHtml from "sanitize-html";
+import readingTime from "reading-time"
 
 export const createPost = async (req, res) => {
   try {
@@ -31,27 +32,27 @@ export const createPost = async (req, res) => {
     if (req.file) {
       image = req.file.path; // ✅ Cloudinary URL
     }
-
+    const stats = readingTime(content);
     const post = await BlogPost.create({
       title,
       slug,
       excerpt,
-    content: sanitizeHtml(content, {
-    allowedTags: sanitizeHtml.defaults.allowedTags.concat([
-        "h1",
-        "h2",
-        "h3",
-        "h4",
-        "blockquote",
-    ]),
-    allowedAttributes: {
-        a: ["href", "target"],
-    },
-    }),
+      content: sanitizeHtml(content, {
+      allowedTags: sanitizeHtml.defaults.allowedTags.concat([
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "blockquote",
+      ]),
+      allowedAttributes: {
+          a: ["href", "target"],
+      },
+      }),
       image,
       category,
       author,
-      readTime,
+      readTime: stats.text, // "5 min read"
       featured,
       published,
     });
@@ -62,7 +63,6 @@ export const createPost = async (req, res) => {
     res.status(500).json({ message: "Failed to create post" });
   }
 };
-
 
 export const getPosts = async (req, res) => {
   const { category, page = 1, limit = 6 } = req.query;
@@ -86,18 +86,15 @@ export const getPosts = async (req, res) => {
 };
 
 export const getPostBySlug = async (req, res) => {
-  const post = await BlogPost.findOne({
-    slug: req.params.slug,
-    published: true,
-  });
+  const post = await BlogPost.findOneAndUpdate(
+    { slug: req.params.slug, published: true },
+    { $inc: { views: 1 } },   // atomic increment
+    { new: true }
+  );
 
   if (!post) {
     return res.status(404).json({ message: "Post not found" });
   }
-
-  // Increment views
-  post.views += 1;
-  await post.save();
 
   res.json(post);
 };
@@ -105,4 +102,22 @@ export const getPostBySlug = async (req, res) => {
 export const getFeaturedPost = async (req, res) => {
   const post = await BlogPost.findOne({ featured: true, published: true });
   res.json(post);
+};
+
+export const incrementViews = async (req, res) => {
+  try {
+    const post = await BlogPost.findOneAndUpdate(
+      { slug: req.params.slug },
+      { $inc: { views: 1 } },
+      { new: true }
+    );
+
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    res.json({ views: post.views });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to update views" });
+  }
 };

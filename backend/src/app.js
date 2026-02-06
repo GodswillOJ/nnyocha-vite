@@ -25,7 +25,7 @@ app.use(
       callback(null, true);
     },
     credentials: true,
-    methods: ["GET", "POST", "OPTIONS"],
+    methods: ["GET", "POST", "PATCH", "OPTIONS"], // <-- add PATCH
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );

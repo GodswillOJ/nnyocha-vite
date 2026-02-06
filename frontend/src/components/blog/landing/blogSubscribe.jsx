@@ -2,7 +2,7 @@ import React from "react";
 
 export default function BlogSubscribe() {
   return (
-    <section className="py-20">
+    <section className="md:py-60">
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
         <div className="rounded-3xl bg-gray-50 overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 p-10 lg:p-16">

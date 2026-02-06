@@ -57,6 +57,22 @@ export default function BlogPost() {
     return () => controller.abort();
   }, [slug, location.state]);
 
+  useEffect(() => {
+    if (!slug) return;
+
+    fetch(`${API_URL}/${slug}/view`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // Sync updated views back into UI
+        setPost((prev) =>
+          prev ? { ...prev, views: data.views } : prev
+        );
+      })
+      .catch((err) => console.error("View count error:", err));
+  }, [slug]);
+
   // Fetch related posts by category
   useEffect(() => {
     if (post?.category) {
@@ -106,7 +122,12 @@ if (error || !post) {
   });
   return (
     <>
-      <article className="bg-white">
+    { ! loading && (
+      <motion.article 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="bg-white">
       {/* BREADCRUMB */}
       <nav
         className="max-w-7xl mx-auto px-6 lg:px-10 py-4 text-sm sm:text-base md:text-base text-gray-600"
@@ -165,30 +186,63 @@ if (error || !post) {
           </li>
         </ol>
       </nav>
+      {/* POST HEADER (Title + Meta) */}
+      <section className="bg-white">
+        <div className="max-w-5xl mx-auto px-6 lg:px-10 py-10 sm:py-14">
+          <h1 className="
+            text-2xl sm:text-3xl md:text-4xl lg:text-5xl
+            font-extrabold
+            leading-tight
+            text-gray-900
+            mb-4
+          ">
+            {post.title}
+          </h1>
 
+          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
+            {post.author && <span>{post.author}</span>}
+            <span>•</span>
+            <span>{formattedDate}</span>
+
+            {post.readTime && (
+              <>
+                <span>•</span>
+                <span>{post.readTime}</span>
+              </>
+            )}
+
+            <span>•</span>
+            <span>{post.views} views</span>
+          </div>
+        </div>
+      </section>
       {/* HERO IMAGE */}
-      <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden">
+      <section className="relative group h-[55vh] sm:h-[65vh] md:h-[75vh] lg:h-[85vh] overflow-hidden">
         <img
           src={post.image || "/placeholder-image.jpg"}
           alt={post.title}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/25" />
 
-        {/* Author + Date overlay */}
-        <div
-          className="absolute bottom-3 left-3 sm:bottom-5 sm:left-5 md:bottom-6 md:left-6 
-                    backdrop-blur-sm 
-                    px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 
-                    rounded-lg 
-                    text-white text-xs sm:text-sm md:text-base 
-                    flex flex-col gap-0.5
-                    hover:bg-[#7aba33] transition-colors duration-300 shadow-md"
-        >
-          <span className="font-medium truncate max-w-[120px] sm:max-w-[160px] md:max-w-[200px]">
-            {post.author}
-          </span>
-          <span className="text-[10px] sm:text-xs md:text-sm">{formattedDate}</span>
+        {/* Dark overlay */}
+        <div className="absolute bg-gradient-to-t from-black/50 via-black/25 to-transparent" />
+
+        {/* Title + Meta overlay */}
+        <div className="absolute inset-0 flex items-end justify-left px-10 pb-10">
+          <div className="max-w-4xl text-center text-white space-y-4">
+            <div className="flex flex-col flex-wrap group-hover:bg-[#e76f00]/30 group-hover:backdrop-blur-lg group-hover:scale-[1.02] justify-center gap-3 text-xs sm:text- px-6 py-4 rounded-[24px] bg-[#8cc63f]/70">
+            <div className="flex flex-col gap-1 text-xs sm:text-sm">
+              {post.author && (
+                <span className="font-semibold tracking-wide">
+                  {post.author}
+                </span>
+              )}
+              <span className="opacity-90">
+                {formattedDate}
+              </span>
+            </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -196,11 +250,6 @@ if (error || !post) {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-12 sm:py-16 grid gap-10 lg:grid-cols-4">
         {/* Main content */}
         <div className="lg:col-span-3">
-          {/* Post Title */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-snug break-words">
-            {post.title}
-          </h1>
-
           {/* Post Content */}
           <div
             className="
@@ -209,13 +258,18 @@ if (error || !post) {
               mt-6 sm:mt-8
               [&>img]:w-full [&>img]:h-auto [&>img]:object-contain
               [&>iframe]:w-full [&>iframe]:h-auto
-              [&>h1]:text-2xl sm:[&>h1]:text-3xl md:[&>h1]:text-4xl lg:[&>h1]:text-5xl
+              [&>h1]:text-2xl sm:[&>h1]:text-3xl md:[&>h1]:text-4xl lg:[&>h1]:text-5xl:pb-10
               [&>h2]:text-xl sm:[&>h2]:text-2xl md:[&>h2]:text-3xl lg:[&>h2]:text-4xl
               [&>h3]:text-lg sm:[&>h3]:text-xl md:[&>h3]:text-2xl lg:[&>h3]:text-3xl
               break-words
             "
             dangerouslySetInnerHTML={{ __html: contentHTML }}
           />
+          <div className="flex gap-6 text-sm text-gray-500 mt-10">
+            {post.readTime && <span>{post.readTime}</span>}
+            <span>{post.views} views</span>
+          </div>
+
         </div>
 
         {/* Related posts sidebar */}
@@ -260,7 +314,9 @@ if (error || !post) {
           </div>
         )}
       </section>
-      </article>
+      </motion.article>
+    )  
+    }
     </>
   );
 }

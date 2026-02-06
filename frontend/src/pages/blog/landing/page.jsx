@@ -57,10 +57,11 @@ export default function BlogPage() {
           </AnimatedSection>
         </div>
       </section>
-
-      <AnimatedSection>
-        <BlogSubscribe />
-      </AnimatedSection>
+        <section className="relative z-10 mt-24">
+          <AnimatedSection>
+            <BlogSubscribe />
+          </AnimatedSection>
+        </section>
       <Footer />
     </main>
   );
