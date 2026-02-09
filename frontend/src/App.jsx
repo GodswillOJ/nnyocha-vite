@@ -21,7 +21,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about@_staging" element={<About />} />
         <Route path="/contact@_staging" element={<ContactUs />} />
-        <Route path="/blog@_staging" element={<BlogPage />} />
+        <Route path="/blog" element={<BlogPage />} />
         <Route path="/admin/posts/new" element={<CreateBlogPostPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
       </Routes>
