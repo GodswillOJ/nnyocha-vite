@@ -101,11 +101,10 @@ export default function BlogList({ activeCategory }) {
         layout
         className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12 h-[400px]"
       >
-        {/* Left: Latest Post */}
         {latestPost && (
           <motion.div
             layout
-            className="relative cursor-pointer rounded-2xl overflow-hidden group h-full"
+            className="relative cursor-pointer rounded-2xl overflow-hidden group min-h-[220px] lg:h-full"
             onClick={() => setShowLatestOnly(true)}
           >
             <img

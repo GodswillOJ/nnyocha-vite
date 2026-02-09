@@ -115,7 +115,7 @@ export default function Navbar() {
             </button>
 
             <a href="#faqs" className="hover:text-[#e76f00]">FAQs</a>
-            <a href="#blog" className="hover:text-[#e76f00]">Blog</a>
+            <a href="/blog" className="hover:text-[#e76f00]">Blog</a>
           </div>
 
           <div className="ml-auto">
@@ -303,7 +303,7 @@ export default function Navbar() {
                 {[
                   { label: "About", href: "#features", icon: FaCircleInfo },
                   { label: "FAQs", href: "#faq", icon: FaCircleQuestion },
-                  { label: "Blog", href: "#blog", icon: FaBlog }
+                  { label: "Blog", href: "/blog", icon: FaBlog }
                 ].map(({ label, href, icon: Icon }) => (
                   <a key={label} href={href}>
                     <div

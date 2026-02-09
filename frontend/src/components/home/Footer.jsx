@@ -29,21 +29,18 @@ export default function Footer() {
           />
         </div>
       </div>
-
-        {/* NAV LINKS */}
-        <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm mb-10">
-          {["Home", "About", "Features", "FAQs", "Testimonials", "Blog"].map(
-            (item) => (
-              <a
-                key={item}
-                href="#"
-                className="hover:text-[#e76f00] transition-colors"
-              >
-                {item}
-              </a>
-            )
-          )}
-        </nav>
+      {/* footer navigation */}
+      <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm mb-10">
+        {["Home", "About", "Features", "FAQs", "Testimonials", "Blog"].map((item) => (
+          <a
+            key={item}
+            href={item === "Blog" ? "/blog" : "#"}
+            className="hover:text-[#e76f00] transition-colors"
+          >
+            {item}
+          </a>
+        ))}
+      </nav>
 
         {/* SOCIAL ICONS */}
         <div className="flex justify-center gap-4 mb-14">
