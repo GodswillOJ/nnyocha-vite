@@ -137,7 +137,7 @@ if (error || !post) {
           {/* Home */}
           <li className="flex items-center">
             <Link
-              to="/blog@_staging"
+              to="/blog"
               className="hover:text-[#56371a] transition-colors duration-200 font-medium"
             >
               Home
